@@ -1,0 +1,9 @@
+{
+  "name": "emerald",
+  "main": "server.js",
+  "dependencies": {
+    "express": "3.x",
+    "stripe": "2.x",
+    "jsonfile": "1.x"
+  }
+}
