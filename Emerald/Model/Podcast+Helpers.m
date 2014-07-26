@@ -18,7 +18,6 @@ NSMutableString *currentString;
 
 - (NSArray *) fetchEpisodes // of Episode
 {
-    NSLog(@"fetchEpisodes");
     NSURL* url = [NSURL URLWithString:[self url]];
     NSXMLParser* parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
@@ -35,7 +34,6 @@ NSMutableString *currentString;
     if ([elementName isEqualToString:@"item"]) {
         [self addEpisodesObject:currentEpisode];
         [[self managedObjectContext] save:NULL];
-        NSLog(@"Episode: %@ | %@", currentEpisode.title, currentEpisode.date);
         currentEpisode = NULL;
     } else if ([elementName isEqualToString:@"title"]) {
         if (currentEpisode != NULL) {

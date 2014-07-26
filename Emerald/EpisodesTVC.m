@@ -53,9 +53,9 @@
     }
     
     if ([[podcast episodes] count] == 0) {
-        [self setEpisodes:[podcast fetchEpisodes]];
+        [self setEpisodes:[[podcast fetchEpisodes] sortedArrayUsingSelector:@selector(dateCompare:)]];
     } else {
-        [self setEpisodes:[[[podcast episodes] allObjects]sortedArrayUsingSelector:@selector(dateCompare:)]];
+        [self setEpisodes:[[[podcast episodes] allObjects] sortedArrayUsingSelector:@selector(dateCompare:)]];
     }
     [context save:NULL];
 }

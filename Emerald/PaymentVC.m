@@ -7,7 +7,10 @@
 //
 
 #import "PaymentVC.h"
-#import "User.h"
+#import "User+Helpers.h"
+#import "RequestC.h"
+
+#define STRIPE_KEY  @"pk_test_8twZAQ2hxIw36UUWXjBqLCfU"
 
 @interface PaymentVC ()
 
@@ -41,24 +44,8 @@
 
 - (void)handleToken:(STPToken *)token
 {
-    NSLog(@"Received token %@", token.tokenId);
-    // Create user with token
-    NSDictionary *customer = [[NSDictionary alloc] init];
-    NSDictionary *card = [[NSDictionary alloc] init];
-    [card setValue:token.card.number forKey:@"number"];
-    [card setValue:[NSString stringWithFormat:@"%lu",(unsigned long)token.card.expMonth] forKey:@"exp_month"];
-    [card setValue:[NSString stringWithFormat:@"%lu",(unsigned long)token.card.expYear] forKey:@"exp_year"];
-    [card setValue:token.card.cvc forKey:@"cvc"];
-    NSData *jsonCardData = [NSJSONSerialization dataWithJSONObject:card
-                                                       options:0
-                                                         error:NULL];
-    NSString *JSONCardString = [[NSString alloc] initWithBytes:[jsonCardData bytes] length:[jsonCardData length] encoding:NSUTF8StringEncoding];
-    [customer setValue:JSONCardString forKey:@"card"];
-    NSData *jsonCustomerData = [NSJSONSerialization dataWithJSONObject:customer
-                                                               options:0
-                                                                 error:NULL];
-    NSString *JSONCustomerString = [[NSString alloc] initWithBytes:[jsonCustomerData bytes] length:[jsonCustomerData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"JSON Customer: %@", JSONCustomerString);
+    NSLog(@"Received token %@\n%@", token.tokenId, token.card.last4);
+    [RequestC pushUserWithTokenId:token.tokenId];
 }
 
 - (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid
@@ -76,39 +63,21 @@
     return self;
 }
 
-// Retrieve the managed object
-- (NSManagedObjectContext *) managedObjectContext
-{
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    User *user = [self fetchUser];
+    User *user = [User fetchUser];
     if (user) {
-        
+        // TODO: setup list card view
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Emerald Settings" message:@"User exists" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        [alert show];
     } else {
         self.stripeView = [[STPView alloc] initWithFrame:CGRectMake(15,20,290,55)
-                                                  andKey:@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"];
+                                                  andKey:STRIPE_KEY];
         self.stripeView.delegate = self;
         [self.view addSubview:self.stripeView];
     }
-}
-
-- (User *)fetchUser {
-    // Create request for the user
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
-    // Fetch the user from the request
-    NSArray *users = [context executeFetchRequest:request error:NULL];
-    return [users firstObject];
 }
 
 - (void)didReceiveMemoryWarning

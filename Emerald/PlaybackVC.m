@@ -7,6 +7,7 @@
 //
 
 #import "PlaybackVC.h"
+#import "RequestC.h"
 
 @interface PlaybackVC ()
 @property (strong, nonatomic) AVAudioPlayer *player;
@@ -25,6 +26,10 @@
         self.state = @"paused";
         [sender setTitle:@"Play" forState:UIControlStateNormal];
     }
+}
+
+- (IBAction)donateButtonPressed:(UIButton *)sender {
+    [RequestC chargeWithEpisodeName:self.episode.title];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

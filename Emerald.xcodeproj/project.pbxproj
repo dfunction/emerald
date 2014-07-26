@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2A950849D25143A0A0F0CD34 /* libPods-Emerald.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4013EB30F2431895B82FE4 /* libPods-Emerald.a */; };
+		4E55B02B198391F600B6E176 /* User+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55B02A198391F600B6E176 /* User+Helpers.m */; };
+		4E55B02E198395A500B6E176 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55B02D198395A500B6E176 /* User.m */; };
+		4E55B03419839AC600B6E176 /* RequestC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55B03319839AC600B6E176 /* RequestC.m */; };
 		9E2BB6761980D5F5008A4446 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2BB6751980D5F5008A4446 /* QuartzCore.framework */; };
 		9E2BB6791980D69A008A4446 /* PaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BB6781980D69A008A4446 /* PaymentVC.m */; };
-		9E2BB67C1980DF5B008A4446 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BB67B1980DF5B008A4446 /* User.m */; };
 		9E4D3253197B05860043BD86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3252197B05860043BD86 /* Foundation.framework */; };
 		9E4D3255197B05860043BD86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3254197B05860043BD86 /* CoreGraphics.framework */; };
 		9E4D3257197B05860043BD86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3256197B05860043BD86 /* UIKit.framework */; };
@@ -47,11 +49,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E55B029198391F600B6E176 /* User+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+Helpers.h"; path = "Model/User+Helpers.h"; sourceTree = "<group>"; };
+		4E55B02A198391F600B6E176 /* User+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+Helpers.m"; path = "Model/User+Helpers.m"; sourceTree = "<group>"; };
+		4E55B02C198395A500B6E176 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		4E55B02D198395A500B6E176 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
+		4E55B03219839AC500B6E176 /* RequestC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestC.h; sourceTree = "<group>"; };
+		4E55B03319839AC600B6E176 /* RequestC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestC.m; sourceTree = "<group>"; };
 		9E2BB6751980D5F5008A4446 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E2BB6771980D69A008A4446 /* PaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentVC.h; sourceTree = "<group>"; };
 		9E2BB6781980D69A008A4446 /* PaymentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentVC.m; sourceTree = "<group>"; };
-		9E2BB67A1980DF5B008A4446 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
-		9E2BB67B1980DF5B008A4446 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
 		9E4D324F197B05860043BD86 /* Emerald.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emerald.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4D3252197B05860043BD86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9E4D3254197B05860043BD86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,8 +163,8 @@
 			children = (
 				9E4D3263197B05860043BD86 /* AppDelegate.h */,
 				9E4D3264197B05860043BD86 /* AppDelegate.m */,
-				9E4D3289197B06D80043BD86 /* Main.storyboard */,
 				9E4D3266197B05860043BD86 /* Emerald.xcdatamodeld */,
+				9E4D3289197B06D80043BD86 /* Main.storyboard */,
 				9E4D329A197B15C00043BD86 /* Model */,
 				9E4D328B197B087F0043BD86 /* EpisodesTVC.h */,
 				9E4D328C197B087F0043BD86 /* EpisodesTVC.m */,
@@ -166,6 +172,8 @@
 				9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */,
 				9E2BB6771980D69A008A4446 /* PaymentVC.h */,
 				9E2BB6781980D69A008A4446 /* PaymentVC.m */,
+				4E55B03219839AC500B6E176 /* RequestC.h */,
+				4E55B03319839AC600B6E176 /* RequestC.m */,
 				9E4D3269197B05860043BD86 /* Images.xcassets */,
 				9E4D325B197B05860043BD86 /* Supporting Files */,
 			);
@@ -212,8 +220,10 @@
 				9E4D3295197B15B60043BD86 /* Podcast.m */,
 				9E4D329B197B4CA60043BD86 /* Podcast+Helpers.h */,
 				9E4D329C197B4CA60043BD86 /* Podcast+Helpers.m */,
-				9E2BB67A1980DF5B008A4446 /* User.h */,
-				9E2BB67B1980DF5B008A4446 /* User.m */,
+				4E55B02C198395A500B6E176 /* User.h */,
+				4E55B02D198395A500B6E176 /* User.m */,
+				4E55B029198391F600B6E176 /* User+Helpers.h */,
+				4E55B02A198391F600B6E176 /* User+Helpers.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -355,10 +365,12 @@
 				9E4D328D197B087F0043BD86 /* EpisodesTVC.m in Sources */,
 				9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */,
 				9E4D3261197B05860043BD86 /* main.m in Sources */,
-				9E2BB67C1980DF5B008A4446 /* User.m in Sources */,
 				9E4D32A8197C890E0043BD86 /* Episode.m in Sources */,
+				4E55B03419839AC600B6E176 /* RequestC.m in Sources */,
 				9E4D3268197B05860043BD86 /* Emerald.xcdatamodeld in Sources */,
+				4E55B02E198395A500B6E176 /* User.m in Sources */,
 				9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */,
+				4E55B02B198391F600B6E176 /* User+Helpers.m in Sources */,
 				9E2BB6791980D69A008A4446 /* PaymentVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

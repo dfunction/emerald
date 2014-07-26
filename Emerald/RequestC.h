@@ -1,5 +1,5 @@
 //
-//  User.h
+//  RequestC.h
 //  Emerald
 //
 //  Created by Nora Tarano on 7/26/14.
@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
+@interface RequestC : NSObject
 
-@interface User : NSManagedObject
-
-@property (nonatomic, retain) NSString * stripeCustomerId;
++ (void)pushUserWithTokenId:(NSString *)tokenId;
++ (void)chargeWithEpisodeName:(NSString *)episodeName;
 
 @end

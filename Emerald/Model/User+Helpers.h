@@ -1,5 +1,5 @@
 //
-//  User.m
+//  User+Helpers.h
 //  Emerald
 //
 //  Created by Nora Tarano on 7/26/14.
@@ -8,9 +8,9 @@
 
 #import "User.h"
 
+@interface User (Helpers)
 
-@implementation User
-
-@dynamic stripeCustomerId;
++ (User *)createUserWithCustomerId:(NSString *)customerId;
++ (User *)fetchUser;
 
 @end
