@@ -149,7 +149,7 @@ app.post("/charge", function(req, res) {
   }
 
   stripe.charges.create({
-      amount: 1,
+      amount: 100,
       currency: "usd",
       customer: customerId,
       description: "Donation for " + episodeName

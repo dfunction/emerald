@@ -10,7 +10,7 @@
 #import "Episode.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface PlaybackVC : UIViewController 
+@interface PlaybackVC : UIViewController
 
 @property (strong) Episode *episode;
 

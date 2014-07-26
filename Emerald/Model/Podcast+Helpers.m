@@ -55,7 +55,9 @@ NSMutableString *currentString;
         currentEpisode = episode;
     } else if ([elementName isEqualToString:@"media:content"]) {
         [currentEpisode setUrl:[attributeDict valueForKeyPath:@"url"]];
-    } else if ([elementName isEqualToString:@"title"]){
+    } else if ([elementName isEqualToString:@"media:thumbnail"]) {
+        [currentEpisode setImageUrl:[attributeDict valueForKeyPath:@"url"]];
+    }else if ([elementName isEqualToString:@"title"]){
         currentString = [[NSMutableString alloc] initWithString:@""];
     } else if ([elementName isEqualToString:@"pubDate"]){
         currentString = [[NSMutableString alloc] initWithString:@""];

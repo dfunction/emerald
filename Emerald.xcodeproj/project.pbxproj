@@ -33,9 +33,9 @@
 		9E4D3296197B15B60043BD86 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D3295197B15B60043BD86 /* Podcast.m */; };
 		9E4D329D197B4CA60043BD86 /* Podcast+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D329C197B4CA60043BD86 /* Podcast+Helpers.m */; };
 		9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */; };
-		9E4D32A8197C890E0043BD86 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32A7197C890E0043BD86 /* Episode.m */; };
 		9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */; };
 		9E4D32AD197C94AA0043BD86 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */; };
+		9ED755FD19844AE600826F5A /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED755FC19844AE600826F5A /* Episode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,11 +85,11 @@
 		9E4D329C197B4CA60043BD86 /* Podcast+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Podcast+Helpers.m"; path = "Model/Podcast+Helpers.m"; sourceTree = "<group>"; };
 		9E4D32A0197B7BAB0043BD86 /* PlaybackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackVC.h; sourceTree = "<group>"; };
 		9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackVC.m; sourceTree = "<group>"; };
-		9E4D32A6197C890D0043BD86 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = Model/Episode.h; sourceTree = "<group>"; };
-		9E4D32A7197C890E0043BD86 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = Model/Episode.m; sourceTree = "<group>"; };
 		9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Episode+Helpers.h"; path = "Model/Episode+Helpers.h"; sourceTree = "<group>"; };
 		9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Episode+Helpers.m"; path = "Model/Episode+Helpers.m"; sourceTree = "<group>"; };
 		9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9ED755FB19844AE600826F5A /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = Model/Episode.h; sourceTree = "<group>"; };
+		9ED755FC19844AE600826F5A /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = Model/Episode.m; sourceTree = "<group>"; };
 		E7B05972B6D747078C75C7D1 /* Pods-Emerald.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emerald.xcconfig"; path = "Pods/Pods-Emerald.xcconfig"; sourceTree = "<group>"; };
 		FA4013EB30F2431895B82FE4 /* libPods-Emerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Emerald.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -212,8 +212,8 @@
 		9E4D329A197B15C00043BD86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9E4D32A6197C890D0043BD86 /* Episode.h */,
-				9E4D32A7197C890E0043BD86 /* Episode.m */,
+				9ED755FB19844AE600826F5A /* Episode.h */,
+				9ED755FC19844AE600826F5A /* Episode.m */,
 				9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */,
 				9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */,
 				9E4D3294197B15B60043BD86 /* Podcast.h */,
@@ -365,11 +365,11 @@
 				9E4D328D197B087F0043BD86 /* EpisodesTVC.m in Sources */,
 				9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */,
 				9E4D3261197B05860043BD86 /* main.m in Sources */,
-				9E4D32A8197C890E0043BD86 /* Episode.m in Sources */,
 				4E55B03419839AC600B6E176 /* RequestC.m in Sources */,
 				9E4D3268197B05860043BD86 /* Emerald.xcdatamodeld in Sources */,
 				4E55B02E198395A500B6E176 /* User.m in Sources */,
 				9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */,
+				9ED755FD19844AE600826F5A /* Episode.m in Sources */,
 				4E55B02B198391F600B6E176 /* User+Helpers.m in Sources */,
 				9E2BB6791980D69A008A4446 /* PaymentVC.m in Sources */,
 			);
