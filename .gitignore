@@ -1,2 +1,4 @@
 .DS_Store
 stripeKey.json
+node_modules
+*.swp
