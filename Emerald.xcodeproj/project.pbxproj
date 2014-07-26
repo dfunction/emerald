@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A950849D25143A0A0F0CD34 /* libPods-Emerald.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4013EB30F2431895B82FE4 /* libPods-Emerald.a */; };
+		9E2BB6761980D5F5008A4446 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2BB6751980D5F5008A4446 /* QuartzCore.framework */; };
+		9E2BB6791980D69A008A4446 /* PaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BB6781980D69A008A4446 /* PaymentVC.m */; };
+		9E2BB67C1980DF5B008A4446 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BB67B1980DF5B008A4446 /* User.m */; };
+		9E4D3253197B05860043BD86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3252197B05860043BD86 /* Foundation.framework */; };
+		9E4D3255197B05860043BD86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3254197B05860043BD86 /* CoreGraphics.framework */; };
+		9E4D3257197B05860043BD86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3256197B05860043BD86 /* UIKit.framework */; };
+		9E4D3259197B05860043BD86 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3258197B05860043BD86 /* CoreData.framework */; };
+		9E4D325F197B05860043BD86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D325D197B05860043BD86 /* InfoPlist.strings */; };
+		9E4D3261197B05860043BD86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D3260197B05860043BD86 /* main.m */; };
+		9E4D3265197B05860043BD86 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D3264197B05860043BD86 /* AppDelegate.m */; };
+		9E4D3268197B05860043BD86 /* Emerald.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D3266197B05860043BD86 /* Emerald.xcdatamodeld */; };
+		9E4D326A197B05860043BD86 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D3269197B05860043BD86 /* Images.xcassets */; };
+		9E4D3271197B05860043BD86 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3270197B05860043BD86 /* XCTest.framework */; };
+		9E4D3272197B05860043BD86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3252197B05860043BD86 /* Foundation.framework */; };
+		9E4D3273197B05860043BD86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3256197B05860043BD86 /* UIKit.framework */; };
+		9E4D3274197B05860043BD86 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3258197B05860043BD86 /* CoreData.framework */; };
+		9E4D327C197B05860043BD86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D327A197B05860043BD86 /* InfoPlist.strings */; };
+		9E4D327E197B05860043BD86 /* EmeraldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D327D197B05860043BD86 /* EmeraldTests.m */; };
+		9E4D328A197B06D80043BD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D3289197B06D80043BD86 /* Main.storyboard */; };
+		9E4D328D197B087F0043BD86 /* EpisodesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D328C197B087F0043BD86 /* EpisodesTVC.m */; };
+		9E4D3296197B15B60043BD86 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D3295197B15B60043BD86 /* Podcast.m */; };
+		9E4D329D197B4CA60043BD86 /* Podcast+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D329C197B4CA60043BD86 /* Podcast+Helpers.m */; };
+		9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */; };
+		9E4D32A8197C890E0043BD86 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32A7197C890E0043BD86 /* Episode.m */; };
+		9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */; };
+		9E4D32AD197C94AA0043BD86 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9E4D3275197B05860043BD86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E4D3247197B05860043BD86 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E4D324E197B05860043BD86;
+			remoteInfo = Emerald;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9E2BB6751980D5F5008A4446 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9E2BB6771980D69A008A4446 /* PaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentVC.h; sourceTree = "<group>"; };
+		9E2BB6781980D69A008A4446 /* PaymentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentVC.m; sourceTree = "<group>"; };
+		9E2BB67A1980DF5B008A4446 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		9E2BB67B1980DF5B008A4446 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
+		9E4D324F197B05860043BD86 /* Emerald.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emerald.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E4D3252197B05860043BD86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9E4D3254197B05860043BD86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9E4D3256197B05860043BD86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9E4D3258197B05860043BD86 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9E4D325C197B05860043BD86 /* Emerald-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Emerald-Info.plist"; sourceTree = "<group>"; };
+		9E4D325E197B05860043BD86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9E4D3260197B05860043BD86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9E4D3262197B05860043BD86 /* Emerald-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Emerald-Prefix.pch"; sourceTree = "<group>"; };
+		9E4D3263197B05860043BD86 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9E4D3264197B05860043BD86 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9E4D3267197B05860043BD86 /* Emerald.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Emerald.xcdatamodel; sourceTree = "<group>"; };
+		9E4D3269197B05860043BD86 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9E4D326F197B05860043BD86 /* EmeraldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmeraldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E4D3270197B05860043BD86 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9E4D3279197B05860043BD86 /* EmeraldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EmeraldTests-Info.plist"; sourceTree = "<group>"; };
+		9E4D327B197B05860043BD86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9E4D327D197B05860043BD86 /* EmeraldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmeraldTests.m; sourceTree = "<group>"; };
+		9E4D3289197B06D80043BD86 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9E4D328B197B087F0043BD86 /* EpisodesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpisodesTVC.h; sourceTree = "<group>"; };
+		9E4D328C197B087F0043BD86 /* EpisodesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpisodesTVC.m; sourceTree = "<group>"; };
+		9E4D3294197B15B60043BD86 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Podcast.h; path = Model/Podcast.h; sourceTree = "<group>"; };
+		9E4D3295197B15B60043BD86 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Podcast.m; path = Model/Podcast.m; sourceTree = "<group>"; };
+		9E4D329B197B4CA60043BD86 /* Podcast+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Podcast+Helpers.h"; path = "Model/Podcast+Helpers.h"; sourceTree = "<group>"; };
+		9E4D329C197B4CA60043BD86 /* Podcast+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Podcast+Helpers.m"; path = "Model/Podcast+Helpers.m"; sourceTree = "<group>"; };
+		9E4D32A0197B7BAB0043BD86 /* PlaybackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackVC.h; sourceTree = "<group>"; };
+		9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackVC.m; sourceTree = "<group>"; };
+		9E4D32A6197C890D0043BD86 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = Model/Episode.h; sourceTree = "<group>"; };
+		9E4D32A7197C890E0043BD86 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = Model/Episode.m; sourceTree = "<group>"; };
+		9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Episode+Helpers.h"; path = "Model/Episode+Helpers.h"; sourceTree = "<group>"; };
+		9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Episode+Helpers.m"; path = "Model/Episode+Helpers.m"; sourceTree = "<group>"; };
+		9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E7B05972B6D747078C75C7D1 /* Pods-Emerald.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emerald.xcconfig"; path = "Pods/Pods-Emerald.xcconfig"; sourceTree = "<group>"; };
+		FA4013EB30F2431895B82FE4 /* libPods-Emerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Emerald.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9E4D324C197B05860043BD86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E2BB6761980D5F5008A4446 /* QuartzCore.framework in Frameworks */,
+				9E4D32AD197C94AA0043BD86 /* AVFoundation.framework in Frameworks */,
+				9E4D3255197B05860043BD86 /* CoreGraphics.framework in Frameworks */,
+				9E4D3259197B05860043BD86 /* CoreData.framework in Frameworks */,
+				9E4D3257197B05860043BD86 /* UIKit.framework in Frameworks */,
+				9E4D3253197B05860043BD86 /* Foundation.framework in Frameworks */,
+				2A950849D25143A0A0F0CD34 /* libPods-Emerald.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E4D326C197B05860043BD86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E4D3271197B05860043BD86 /* XCTest.framework in Frameworks */,
+				9E4D3274197B05860043BD86 /* CoreData.framework in Frameworks */,
+				9E4D3273197B05860043BD86 /* UIKit.framework in Frameworks */,
+				9E4D3272197B05860043BD86 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9E4D3246197B05860043BD86 = {
+			isa = PBXGroup;
+			children = (
+				9E4D325A197B05860043BD86 /* Emerald */,
+				9E4D3277197B05860043BD86 /* EmeraldTests */,
+				9E4D3251197B05860043BD86 /* Frameworks */,
+				9E4D3250197B05860043BD86 /* Products */,
+				E7B05972B6D747078C75C7D1 /* Pods-Emerald.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		9E4D3250197B05860043BD86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E4D324F197B05860043BD86 /* Emerald.app */,
+				9E4D326F197B05860043BD86 /* EmeraldTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9E4D3251197B05860043BD86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E2BB6751980D5F5008A4446 /* QuartzCore.framework */,
+				9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */,
+				9E4D3252197B05860043BD86 /* Foundation.framework */,
+				9E4D3254197B05860043BD86 /* CoreGraphics.framework */,
+				9E4D3256197B05860043BD86 /* UIKit.framework */,
+				9E4D3258197B05860043BD86 /* CoreData.framework */,
+				9E4D3270197B05860043BD86 /* XCTest.framework */,
+				FA4013EB30F2431895B82FE4 /* libPods-Emerald.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E4D325A197B05860043BD86 /* Emerald */ = {
+			isa = PBXGroup;
+			children = (
+				9E4D3263197B05860043BD86 /* AppDelegate.h */,
+				9E4D3264197B05860043BD86 /* AppDelegate.m */,
+				9E4D3289197B06D80043BD86 /* Main.storyboard */,
+				9E4D3266197B05860043BD86 /* Emerald.xcdatamodeld */,
+				9E4D329A197B15C00043BD86 /* Model */,
+				9E4D328B197B087F0043BD86 /* EpisodesTVC.h */,
+				9E4D328C197B087F0043BD86 /* EpisodesTVC.m */,
+				9E4D32A0197B7BAB0043BD86 /* PlaybackVC.h */,
+				9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */,
+				9E2BB6771980D69A008A4446 /* PaymentVC.h */,
+				9E2BB6781980D69A008A4446 /* PaymentVC.m */,
+				9E4D3269197B05860043BD86 /* Images.xcassets */,
+				9E4D325B197B05860043BD86 /* Supporting Files */,
+			);
+			path = Emerald;
+			sourceTree = "<group>";
+		};
+		9E4D325B197B05860043BD86 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E4D325C197B05860043BD86 /* Emerald-Info.plist */,
+				9E4D325D197B05860043BD86 /* InfoPlist.strings */,
+				9E4D3260197B05860043BD86 /* main.m */,
+				9E4D3262197B05860043BD86 /* Emerald-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9E4D3277197B05860043BD86 /* EmeraldTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E4D327D197B05860043BD86 /* EmeraldTests.m */,
+				9E4D3278197B05860043BD86 /* Supporting Files */,
+			);
+			path = EmeraldTests;
+			sourceTree = "<group>";
+		};
+		9E4D3278197B05860043BD86 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E4D3279197B05860043BD86 /* EmeraldTests-Info.plist */,
+				9E4D327A197B05860043BD86 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9E4D329A197B15C00043BD86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E4D32A6197C890D0043BD86 /* Episode.h */,
+				9E4D32A7197C890E0043BD86 /* Episode.m */,
+				9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */,
+				9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */,
+				9E4D3294197B15B60043BD86 /* Podcast.h */,
+				9E4D3295197B15B60043BD86 /* Podcast.m */,
+				9E4D329B197B4CA60043BD86 /* Podcast+Helpers.h */,
+				9E4D329C197B4CA60043BD86 /* Podcast+Helpers.m */,
+				9E2BB67A1980DF5B008A4446 /* User.h */,
+				9E2BB67B1980DF5B008A4446 /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E4D324E197B05860043BD86 /* Emerald */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E4D3281197B05860043BD86 /* Build configuration list for PBXNativeTarget "Emerald" */;
+			buildPhases = (
+				89463D74957C4F35A88F6BB2 /* Check Pods Manifest.lock */,
+				9E4D324B197B05860043BD86 /* Sources */,
+				9E4D324C197B05860043BD86 /* Frameworks */,
+				9E4D324D197B05860043BD86 /* Resources */,
+				33DFD9B1430A423192CC49C5 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Emerald;
+			productName = Emerald;
+			productReference = 9E4D324F197B05860043BD86 /* Emerald.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9E4D326E197B05860043BD86 /* EmeraldTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E4D3284197B05860043BD86 /* Build configuration list for PBXNativeTarget "EmeraldTests" */;
+			buildPhases = (
+				9E4D326B197B05860043BD86 /* Sources */,
+				9E4D326C197B05860043BD86 /* Frameworks */,
+				9E4D326D197B05860043BD86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E4D3276197B05860043BD86 /* PBXTargetDependency */,
+			);
+			name = EmeraldTests;
+			productName = EmeraldTests;
+			productReference = 9E4D326F197B05860043BD86 /* EmeraldTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9E4D3247197B05860043BD86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = deltafunction.co;
+				TargetAttributes = {
+					9E4D326E197B05860043BD86 = {
+						TestTargetID = 9E4D324E197B05860043BD86;
+					};
+				};
+			};
+			buildConfigurationList = 9E4D324A197B05860043BD86 /* Build configuration list for PBXProject "Emerald" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9E4D3246197B05860043BD86;
+			productRefGroup = 9E4D3250197B05860043BD86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E4D324E197B05860043BD86 /* Emerald */,
+				9E4D326E197B05860043BD86 /* EmeraldTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E4D324D197B05860043BD86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E4D328A197B06D80043BD86 /* Main.storyboard in Resources */,
+				9E4D325F197B05860043BD86 /* InfoPlist.strings in Resources */,
+				9E4D326A197B05860043BD86 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E4D326D197B05860043BD86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E4D327C197B05860043BD86 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		33DFD9B1430A423192CC49C5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Emerald-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89463D74957C4F35A88F6BB2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E4D324B197B05860043BD86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E4D3296197B15B60043BD86 /* Podcast.m in Sources */,
+				9E4D3265197B05860043BD86 /* AppDelegate.m in Sources */,
+				9E4D329D197B4CA60043BD86 /* Podcast+Helpers.m in Sources */,
+				9E4D328D197B087F0043BD86 /* EpisodesTVC.m in Sources */,
+				9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */,
+				9E4D3261197B05860043BD86 /* main.m in Sources */,
+				9E2BB67C1980DF5B008A4446 /* User.m in Sources */,
+				9E4D32A8197C890E0043BD86 /* Episode.m in Sources */,
+				9E4D3268197B05860043BD86 /* Emerald.xcdatamodeld in Sources */,
+				9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */,
+				9E2BB6791980D69A008A4446 /* PaymentVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E4D326B197B05860043BD86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E4D327E197B05860043BD86 /* EmeraldTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9E4D3276197B05860043BD86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E4D324E197B05860043BD86 /* Emerald */;
+			targetProxy = 9E4D3275197B05860043BD86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9E4D325D197B05860043BD86 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E4D325E197B05860043BD86 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9E4D327A197B05860043BD86 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E4D327B197B05860043BD86 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9E4D327F197B05860043BD86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9E4D3280197B05860043BD86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9E4D3282197B05860043BD86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7B05972B6D747078C75C7D1 /* Pods-Emerald.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Emerald/Emerald-Prefix.pch";
+				INFOPLIST_FILE = "Emerald/Emerald-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9E4D3283197B05860043BD86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7B05972B6D747078C75C7D1 /* Pods-Emerald.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Emerald/Emerald-Prefix.pch";
+				INFOPLIST_FILE = "Emerald/Emerald-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		9E4D3285197B05860043BD86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Emerald.app/Emerald";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Emerald/Emerald-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "EmeraldTests/EmeraldTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		9E4D3286197B05860043BD86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Emerald.app/Emerald";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Emerald/Emerald-Prefix.pch";
+				INFOPLIST_FILE = "EmeraldTests/EmeraldTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E4D324A197B05860043BD86 /* Build configuration list for PBXProject "Emerald" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E4D327F197B05860043BD86 /* Debug */,
+				9E4D3280197B05860043BD86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E4D3281197B05860043BD86 /* Build configuration list for PBXNativeTarget "Emerald" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E4D3282197B05860043BD86 /* Debug */,
+				9E4D3283197B05860043BD86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E4D3284197B05860043BD86 /* Build configuration list for PBXNativeTarget "EmeraldTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E4D3285197B05860043BD86 /* Debug */,
+				9E4D3286197B05860043BD86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9E4D3266197B05860043BD86 /* Emerald.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9E4D3267197B05860043BD86 /* Emerald.xcdatamodel */,
+			);
+			currentVersion = 9E4D3267197B05860043BD86 /* Emerald.xcdatamodel */;
+			path = Emerald.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9E4D3247197B05860043BD86 /* Project object */;
+}
