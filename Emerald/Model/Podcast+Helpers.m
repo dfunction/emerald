@@ -9,11 +9,11 @@
 #import "Podcast+Helpers.h"
 #import "Episode+Helpers.h"
 
-
 @implementation Podcast (Helpers)
 
 Episode *currentEpisode;
 NSMutableString *currentString;
+NSMutableArray* temporaryEpisodes;
 
 
 - (NSArray *) fetchEpisodes // of Episode
@@ -21,19 +21,32 @@ NSMutableString *currentString;
     NSURL* url = [NSURL URLWithString:[self url]];
     NSXMLParser* parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
-    [parser parse];
+    temporaryEpisodes = [[NSMutableArray alloc] init];
+    NSArray* currentEpisodes = [[self episodes] allObjects];
+    for (NSUInteger i = 0; i < [temporaryEpisodes count]; i++) {
+        BOOL alreadyExists = NO;
+        for (NSUInteger j = 0; j < [currentEpisodes count]; j++) {
+            if ([((Episode*)temporaryEpisodes[i]).url isEqualToString:((Episode*)currentEpisodes[j]).url])
+                alreadyExists = YES;
+        }
+        if (!alreadyExists) {
+            [self addEpisodesObject:temporaryEpisodes[i]];
+            [[self managedObjectContext] save:NULL];
+        }
+    }
+    
     NSArray* episodes = [[self episodes] allObjects];
     [episodes sortedArrayUsingSelector:(@selector(dateCompare:))];
+    temporaryEpisodes = NULL;
     return episodes;
 }
-
-
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if ([elementName isEqualToString:@"item"]) {
-        [self addEpisodesObject:currentEpisode];
-        [[self managedObjectContext] save:NULL];
+        if (currentEpisode.url != NULL) {
+            [temporaryEpisodes addObject:currentEpisode];
+        }
         currentEpisode = NULL;
     } else if ([elementName isEqualToString:@"title"]) {
         if (currentEpisode != NULL) {

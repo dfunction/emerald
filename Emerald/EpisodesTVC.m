@@ -14,6 +14,7 @@
 
 @interface EpisodesTVC ()
 @property (strong) NSArray *episodes;   // of Episode
+@property (strong) Podcast *podcast;
 @end
 
 @implementation EpisodesTVC
@@ -41,21 +42,20 @@
     // Fetch the podcast from the request
     NSArray *podcasts = [context executeFetchRequest:request error:NULL];
     
-    Podcast *podcast = NULL;
     if ([podcasts count] == 0) {
-        podcast = [[Podcast alloc] initWithEntity:[NSEntityDescription entityForName:@"Podcast" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
-        [podcast setTitle:title];
-        [podcast setUrl: [url absoluteString]];
-        [context insertObject:podcast];
+        self.podcast = [[Podcast alloc] initWithEntity:[NSEntityDescription entityForName:@"Podcast" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
+        [self.podcast setTitle:title];
+        [self.podcast setUrl: [url absoluteString]];
+        [context insertObject:self.podcast];
         [context save:NULL];
     } else {
-        podcast = [podcasts firstObject];
+        self.podcast = [podcasts firstObject];
     }
     
-    if ([[podcast episodes] count] == 0) {
-        [self setEpisodes:[[podcast fetchEpisodes] sortedArrayUsingSelector:@selector(dateCompare:)]];
+    if ([[self.podcast episodes] count] == 0) {
+        [self setEpisodes:[[self.podcast fetchEpisodes] sortedArrayUsingSelector:@selector(dateCompare:)]];
     } else {
-        [self setEpisodes:[[[podcast episodes] allObjects] sortedArrayUsingSelector:@selector(dateCompare:)]];
+        [self setEpisodes:[[[self.podcast episodes] allObjects] sortedArrayUsingSelector:@selector(dateCompare:)]];
     }
     [context save:NULL];
 }
@@ -77,6 +77,12 @@
     [self initData];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (IBAction)doRefresh:(UIRefreshControl *)sender {
+    self.episodes = [[self.podcast fetchEpisodes] sortedArrayUsingSelector:@selector(dateCompare:)];
+    //TODO: Update view?
+    [sender endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
