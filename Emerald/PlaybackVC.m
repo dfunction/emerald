@@ -10,13 +10,14 @@
 #import "RequestC.h"
 #import "ALDBlurImageProcessor.h"
 
-#define TOP_BAR_HEIGHT  88
+#define TOP_BAR_HEIGHT  64
 
 @interface PlaybackVC ()
 @property (strong, nonatomic) AVAudioPlayer *player;
 @property (strong, nonatomic) NSString *state;
 @property (strong, nonatomic) UIImageView *thumbnailView;
-@property (strong, nonatomic) UITextView *titleView;
+@property (strong, nonatomic) UIImageView *backgroundView;
+@property (strong, nonatomic) UILabel *titleView;
 @end
 
 @implementation PlaybackVC
@@ -49,6 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Get Audio
     NSData *soundData;
     if ([[self episode] audio] == NULL) {
@@ -68,15 +70,7 @@
         [[self player] prepareToPlay];
     }
     
-    // Set thumbnail size and position
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat tbHeight = TOP_BAR_HEIGHT;
-    CGRect thumbnailFrame = CGRectMake(0, 0, width, width + tbHeight);
-    self.thumbnailView = [[UIImageView alloc] initWithFrame:thumbnailFrame];
-    self.thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:self.thumbnailView];
-    
-    // Set the image
+    // Get the episode's image
     NSData *imageData;
     if ([[self episode] visual] == NULL) {
         imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[self episode] imageUrl]]];
@@ -85,24 +79,56 @@
     } else {
         imageData = [[self episode] visual];
     }
-    UIImage *thumbnail = [[UIImage alloc] initWithData:imageData];
-    ALDBlurImageProcessor *blurImageProcessor = [[ALDBlurImageProcessor alloc] initWithImage: thumbnail];
-    UIImage *blurredThumbnail = [blurImageProcessor syncBlurWithRadius:5 iterations:10 errorCode:NULL];
-    [self.thumbnailView setImage:blurredThumbnail];
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
     
-    CGRect textFrame = CGRectMake(0, tbHeight, width, width);
-    self.titleView = [[UITextView alloc] initWithFrame:textFrame];
-    self.titleView.backgroundColor = [UIColor clearColor];
+    // Background view
+    // frame
+    CGRect backgroundFrame = CGRectMake(0, TOP_BAR_HEIGHT, width, width);
+    self.backgroundView = [[UIImageView alloc] initWithFrame:backgroundFrame];
+    self.backgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    // image
+    UIImage *backgroundImage = [[UIImage alloc] initWithData:imageData];
+    ALDBlurImageProcessor *blurImageProcessor = [[ALDBlurImageProcessor alloc] initWithImage:backgroundImage];
+    UIImage *blurredBackgroundImage = [blurImageProcessor syncBlurWithRadius:10 iterations:10 errorCode:NULL];
+    [self.backgroundView setImage:blurredBackgroundImage];
+    [self.view addSubview:self.backgroundView];
+    
+    // Thumbnail view
+    // frame
+    CGRect thumbnailFrame = CGRectMake(width*1/16, TOP_BAR_HEIGHT + width*11/16, width*4/16, width/4);
+    self.thumbnailView = [[UIImageView alloc] initWithFrame:thumbnailFrame];
+    self.thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
+    self.thumbnailView.clipsToBounds = YES;
+    self.thumbnailView.layer.cornerRadius = self.thumbnailView.bounds.size.width / 2;
+    self.thumbnailView.layer.masksToBounds = YES;
+    self.thumbnailView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.thumbnailView.layer.borderWidth = 2.0f;
+
+    // image
+    UIImage *thumbnailImage = [[UIImage alloc] initWithData:imageData];
+    [self.thumbnailView setImage:thumbnailImage];
+    [self.view addSubview: self.thumbnailView];
+    
+    // Title label
+    // process
+    NSArray *comps = [self.episode.title componentsSeparatedByString:@": "];
+    NSString *titleString;
+    if ([comps count] == 2) {
+        titleString = [NSString stringWithFormat:@"%@:\r%@", comps[0], comps[1]];
+    } else {
+        titleString = self.episode.title;
+    }
+    // view
+    CGRect textFrame = CGRectMake(width*6/16, TOP_BAR_HEIGHT + width*11/16, width*10/16, width/4);
+    self.titleView = [[UILabel alloc] initWithFrame:textFrame];
+    self.titleView.text = titleString;
     self.titleView.textColor = [UIColor whiteColor];
-    self.titleView.font = [UIFont boldSystemFontOfSize:36.0];
-    self.titleView.text = self.episode.title;
-    CGFloat topCorrect = self.titleView.bounds.size.height - self.titleView.contentSize.height;
-    topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
-    self.titleView.contentOffset = CGPointMake(400, 400);
-    self.titleView.selectable = NO;
-    self.titleView.editable = NO;
+    self.titleView.font = [UIFont systemFontOfSize:18.0];
+    self.titleView.textAlignment = NSTextAlignmentLeft;
+    self.titleView.backgroundColor = [UIColor clearColor];
+    self.titleView.lineBreakMode = NSLineBreakByWordWrapping;
+    self.titleView.numberOfLines = 0;
     [self.view addSubview:self.titleView];
-    NSLog(@"offset %f", self.titleView.contentSize.height);
     
 }
 
