@@ -22,6 +22,7 @@ NSMutableArray* temporaryEpisodes;
     NSXMLParser* parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
     temporaryEpisodes = [[NSMutableArray alloc] init];
+    [parser parse];
     NSArray* currentEpisodes = [[self episodes] allObjects];
     for (NSUInteger i = 0; i < [temporaryEpisodes count]; i++) {
         BOOL alreadyExists = NO;
