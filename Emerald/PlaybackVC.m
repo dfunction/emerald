@@ -15,9 +15,12 @@
 @interface PlaybackVC ()
 @property (strong, nonatomic) AVAudioPlayer *player;
 @property (strong, nonatomic) NSString *state;
-@property (strong, nonatomic) UIImageView *thumbnailView;
 @property (strong, nonatomic) UIImageView *backgroundView;
-@property (strong, nonatomic) UILabel *titleView;
+@property (strong, nonatomic) UIView *titleView;
+@property (strong, nonatomic) UIImageView *thumbnailView;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UIButton *playButton;
+@property (strong, nonatomic) UIButton *donateButton;
 @end
 
 @implementation PlaybackVC
@@ -80,12 +83,14 @@
         imageData = [[self episode] visual];
     }
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
     // Background view
     // frame
-    CGRect backgroundFrame = CGRectMake(0, TOP_BAR_HEIGHT, width, width);
+    CGRect backgroundFrame = CGRectMake(0, 0, width, height);
     self.backgroundView = [[UIImageView alloc] initWithFrame:backgroundFrame];
-    self.backgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+    self.backgroundView.clipsToBounds = YES;
     // image
     UIImage *backgroundImage = [[UIImage alloc] initWithData:imageData];
     ALDBlurImageProcessor *blurImageProcessor = [[ALDBlurImageProcessor alloc] initWithImage:backgroundImage];
@@ -93,24 +98,55 @@
     [self.backgroundView setImage:blurredBackgroundImage];
     [self.view addSubview:self.backgroundView];
     
+    // Title view
+    [self makeTitleViewWithImageData:imageData];
+    
+    // Player
+    // play button
+    CGFloat playerY = CGRectGetMaxY(self.titleView.frame);
+    CGRect playerFrame = CGRectMake(width*1/16, playerY + width/16, width*2/16, width*2/16);
+    UIImage *playImage = [UIImage imageNamed:@"play"];
+    self.playButton = [[UIButton alloc] initWithFrame:playerFrame];
+    self.playButton.backgroundColor = [UIColor blackColor];
+    [self.playButton setImage:playImage forState:UIControlStateNormal];
+    [self.playButton addTarget:self action:@selector(playButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.playButton];
+    
+    // Donation
+    // donate button
+    CGFloat donateY = CGRectGetMaxY(self.playButton.frame);
+    CGRect donateFrame = CGRectMake(width*1/16, donateY + width/16, width*2/16, width*2/16);
+    self.donateButton = [[UIButton alloc] initWithFrame:donateFrame];
+    self.donateButton.backgroundColor = [UIColor blackColor];
+    [self.donateButton setTitle:@"$1" forState:UIControlStateNormal];
+    [self.donateButton addTarget:self action:@selector(donateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.donateButton];
+}
+
+- (void)makeTitleViewWithImageData:(NSData *)imageData {
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    // Title view
+    CGRect titleViewFrame = CGRectMake(width*1/16, height/4, width*14/16, height/5);
+    self.titleView = [[UIView alloc] initWithFrame:titleViewFrame];
+    self.titleView.backgroundColor = [UIColor blackColor];
+    
     // Thumbnail view
     // frame
-    CGRect thumbnailFrame = CGRectMake(width*1/16, TOP_BAR_HEIGHT + width*11/16, width*4/16, width/4);
+    CGFloat thumbnailSize = CGRectGetHeight(titleViewFrame);
+    CGRect thumbnailFrame = CGRectMake(0, 0, thumbnailSize, thumbnailSize);
     self.thumbnailView = [[UIImageView alloc] initWithFrame:thumbnailFrame];
-    self.thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
     self.thumbnailView.clipsToBounds = YES;
-    self.thumbnailView.layer.cornerRadius = self.thumbnailView.bounds.size.width / 2;
+    self.thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
     self.thumbnailView.layer.masksToBounds = YES;
-    self.thumbnailView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.thumbnailView.layer.borderWidth = 2.0f;
-
     // image
     UIImage *thumbnailImage = [[UIImage alloc] initWithData:imageData];
     [self.thumbnailView setImage:thumbnailImage];
-    [self.view addSubview: self.thumbnailView];
+    [self.titleView addSubview: self.thumbnailView];
     
     // Title label
-    // process
+    // process title
     NSArray *comps = [self.episode.title componentsSeparatedByString:@": "];
     NSString *titleString;
     if ([comps count] == 2) {
@@ -119,23 +155,46 @@
         titleString = self.episode.title;
     }
     // view
-    CGRect textFrame = CGRectMake(width*6/16, TOP_BAR_HEIGHT + width*11/16, width*10/16, width/4);
-    self.titleView = [[UILabel alloc] initWithFrame:textFrame];
-    self.titleView.text = titleString;
-    self.titleView.textColor = [UIColor whiteColor];
-    self.titleView.font = [UIFont systemFontOfSize:18.0];
-    self.titleView.textAlignment = NSTextAlignmentLeft;
-    self.titleView.backgroundColor = [UIColor clearColor];
-    self.titleView.lineBreakMode = NSLineBreakByWordWrapping;
-    self.titleView.numberOfLines = 0;
-    [self.view addSubview:self.titleView];
+    CGRect textFrame = CGRectMake(thumbnailSize, 0, CGRectGetWidth(titleViewFrame)-thumbnailSize, CGRectGetHeight(titleViewFrame));
+    self.titleLabel = [[UILabel alloc] initWithFrame:textFrame];
+    self.titleLabel.text = [titleString uppercaseString];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.titleLabel.numberOfLines = 0;
+    [self.titleView addSubview:self.titleLabel];
     
+    [self.view addSubview:self.titleView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIImage *)image:(UIImage *)image ByApplyingAlpha:(CGFloat) alpha {
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect area = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    CGContextScaleCTM(ctx, 1, -1);
+    CGContextTranslateCTM(ctx, 0, -area.size.height);
+    
+    CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
+    
+    CGContextSetAlpha(ctx, alpha);
+    
+    CGContextDrawImage(ctx, area, image.CGImage);
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 /*
