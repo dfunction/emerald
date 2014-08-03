@@ -12,10 +12,25 @@
 #import "Podcast+Helpers.h"
 #import "PlaybackVC.h"  // for segue
 
+@interface EpisodeCell : UITableViewCell
+
+@end
+
+@interface EpisodeCell ()
+@property (strong, nonatomic) IBOutlet UILabel *title;
+@property (strong, nonatomic) IBOutlet UIButton *download;
+@end
+
+@implementation EpisodeCell
+
+@end
+
 @interface EpisodesTVC ()
 @property (strong) NSArray *episodes;   // of Episode
 @property (strong) Podcast *podcast;
 @end
+
+
 
 @implementation EpisodesTVC
 
@@ -105,12 +120,22 @@
     return [[self episodes] count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (EpisodeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EpisodeCell" forIndexPath:indexPath];
+    EpisodeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EpisodeCell" forIndexPath:indexPath];
+    Episode *episode = [[self episodes] objectAtIndex:[indexPath row]];
     
     // Configure the cell...
-    [[cell textLabel] setText:[[[self episodes] objectAtIndex:[indexPath row]] title]];
+    [[cell title] setText:episode.title];
+    
+    if (episode.audio) {
+        [cell.download removeFromSuperview];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        [cell addSubview:cell.download];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+
+    }
     
     return cell;
 }
@@ -123,6 +148,8 @@
         [playbackVC setEpisode:episode];
     }
 }
+
+
 
 /*
 // Override to support conditional editing of the table view.
