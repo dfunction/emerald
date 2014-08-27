@@ -7,7 +7,10 @@
 //
 
 #import "Episode.h"
+#import "EpisodesTVC.h"
 
 @interface Episode (Helpers)
 - (NSComparisonResult) dateCompare: (Episode*)episode;
 @end
+
+

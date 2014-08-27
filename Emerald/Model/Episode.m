@@ -2,7 +2,7 @@
 //  Episode.m
 //  Emerald
 //
-//  Created by Juan Sebastian Angarita on 7/26/14.
+//  Created by Juan Sebastian Angarita on 8/3/14.
 //  Copyright (c) 2014 deltafunction.co. All rights reserved.
 //
 
@@ -14,10 +14,11 @@
 
 @dynamic audio;
 @dynamic date;
+@dynamic imageUrl;
 @dynamic title;
 @dynamic url;
 @dynamic visual;
-@dynamic imageUrl;
+@dynamic dataIsDownloading;
 @dynamic podcast;
 
 @end

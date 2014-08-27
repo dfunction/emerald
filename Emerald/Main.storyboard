@@ -26,8 +26,15 @@
                                             <state key="normal" title="Download">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="pressedDownload:" destination="G8L-v1-vab" eventType="touchUpInside" id="wT4-o0-2UI"/>
+                                            </connections>
                                         </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOV-67-Me0">
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lad-Ml-JFG">
+                                            <rect key="frame" x="231" y="20" width="69" height="2"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </progressView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBS-8R-8R7">
                                             <rect key="frame" x="20" y="11" width="203" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -38,7 +45,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="download" destination="M8a-Xo-YWc" id="TJG-Ep-vEN"/>
-                                    <outlet property="title" destination="HOV-67-Me0" id="nUp-fr-5QW"/>
+                                    <outlet property="progress" destination="Lad-Ml-JFG" id="7yG-dL-gXA"/>
+                                    <outlet property="title" destination="GBS-8R-8R7" id="pND-Xj-vYH"/>
                                     <segue destination="Tke-ez-5pL" kind="push" identifier="EpisodePushSegue" id="qqL-PJ-ROc"/>
                                 </connections>
                             </tableViewCell>

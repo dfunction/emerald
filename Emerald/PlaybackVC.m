@@ -54,31 +54,27 @@
 {
     [super viewDidLoad];
     
-    // Get Audio
+    // Prepare audio
     NSData *soundData;
-    if ([[self episode] audio] == NULL) {
-        soundData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[self episode] url]]];
-        [[self episode] setAudio:soundData];
-        [[[self episode] managedObjectContext] save:NULL];
+    if ([[self episode] audio] == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Do not yet have audio data." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+        return;
     } else {
         soundData = [[self episode] audio];
     }
-    NSError *error;
-    [self setPlayer:[[AVAudioPlayer alloc] initWithData:soundData error:&error]];
-    if (error)
-    {
-        NSLog(@"Error in audioPlayer: %@", [error localizedDescription]);
-    } else {
-        [[self player] setVolume:1.0];
-        [[self player] prepareToPlay];
-    }
+
+    [self setPlayer:[[AVAudioPlayer alloc] initWithData:soundData error:NULL]];
+    [self.player setVolume:1.0];
+    [self.player prepareToPlay];
+
     
     // Get the episode's image
     NSData *imageData;
-    if ([[self episode] visual] == NULL) {
-        imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[self episode] imageUrl]]];
-        [[self episode] setVisual:imageData];
-        [[[self episode] managedObjectContext] save:NULL];
+    if ([[self episode] visual] == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Do not yet have image data." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+        return;
     } else {
         imageData = [[self episode] visual];
     }
@@ -165,7 +161,7 @@
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.numberOfLines = 0;
     [self.titleView addSubview:self.titleLabel];
-    
+
     [self.view addSubview:self.titleView];
 }
 

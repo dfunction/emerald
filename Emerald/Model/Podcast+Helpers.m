@@ -67,6 +67,7 @@ NSMutableArray* temporaryEpisodes;
     if ([elementName isEqualToString:@"item"]) {
         Episode *episode = [[Episode alloc] initWithEntity:[NSEntityDescription entityForName:@"Episode" inManagedObjectContext:[self managedObjectContext]] insertIntoManagedObjectContext:[self managedObjectContext]];
         currentEpisode = episode;
+        currentEpisode.dataIsDownloading = [[NSNumber alloc] initWithBool:NO];
     } else if ([elementName isEqualToString:@"media:content"]) {
         [currentEpisode setUrl:[attributeDict valueForKeyPath:@"url"]];
     } else if ([elementName isEqualToString:@"media:thumbnail"]) {

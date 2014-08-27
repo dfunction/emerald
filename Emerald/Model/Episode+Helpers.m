@@ -19,5 +19,4 @@
     NSDate *dateB = [formater dateFromString:[episode date]];
     return [dateB compare:dateA];
 }
-
 @end
