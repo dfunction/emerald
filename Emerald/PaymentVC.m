@@ -10,10 +10,11 @@
 #import "User+Helpers.h"
 #import "RequestC.h"
 
+
 #define STRIPE_KEY  @"pk_test_8twZAQ2hxIw36UUWXjBqLCfU"
 
 @interface PaymentVC ()
-
+@property (strong, nonatomic) UIButton* skipButton;
 @end
 
 @implementation PaymentVC
@@ -58,9 +59,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.skipButton = (UIButton*)[self.view viewWithTag:3];
+        [self.skipButton addTarget:self action:@selector(postOnboardingSkipped:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
+}
+
+- (void)postOnboardingSkipped:(id)sender
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"OnboardingSkipped"
+     object:self];
 }
 
 - (void)viewDidLoad
@@ -73,10 +82,14 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Emerald Settings" message:@"User exists" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
         [alert show];
     } else {
-        self.stripeView = [[STPView alloc] initWithFrame:CGRectMake(15,20,290,55)
-                                                  andKey:STRIPE_KEY];
+        self.stripeView = (STPView *)[self.view viewWithTag:1];
+        
+        /*self.stripeView = [[STPView alloc] initWithFrame:CGRectMake(15,20,290,55)
+                                                  andKey:STRIPE_KEY];*/
+        
+        self.stripeView.key = STRIPE_KEY;
         self.stripeView.delegate = self;
-        [self.view addSubview:self.stripeView];
+        //[self.view addSubview:self.stripeView];
     }
 }
 

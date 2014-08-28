@@ -13,6 +13,10 @@
 		4E55B03419839AC600B6E176 /* RequestC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55B03319839AC600B6E176 /* RequestC.m */; };
 		9E01940919AD95FD000D1AB5 /* EpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E01940819AD95FD000D1AB5 /* EpisodeCell.m */; };
 		9E10BE7C198ED8EA002AB660 /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E10BE7B198ED8EA002AB660 /* Downloader.m */; };
+		9E1FC53A19AEEE4800622FDF /* OnboardingPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E1FC53919AEEE4800622FDF /* OnboardingPage1.xib */; };
+		9E1FC53C19AEEE7200622FDF /* OnboardingPage2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E1FC53B19AEEE7200622FDF /* OnboardingPage2.xib */; };
+		9E1FC54019AEF03A00622FDF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1FC53E19AEF03A00622FDF /* TestViewController.m */; };
+		9E1FC54119AEF03A00622FDF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E1FC53F19AEF03A00622FDF /* TestViewController.xib */; };
 		9E2BB6761980D5F5008A4446 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2BB6751980D5F5008A4446 /* QuartzCore.framework */; };
 		9E2BB6791980D69A008A4446 /* PaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BB6781980D69A008A4446 /* PaymentVC.m */; };
 		9E4D3253197B05860043BD86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3252197B05860043BD86 /* Foundation.framework */; };
@@ -38,6 +42,8 @@
 		9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */; };
 		9E4D32AD197C94AA0043BD86 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */; };
 		9EDA110C19AED8D300D59971 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA110B19AED8D300D59971 /* Episode.m */; };
+		9EDA110F19AEE0FA00D59971 /* UITabBarC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA110E19AEE0FA00D59971 /* UITabBarC.m */; };
+		9EDA111919AEE1EB00D59971 /* OnboardingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA111719AEE1EB00D59971 /* OnboardingVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +67,11 @@
 		9E01940819AD95FD000D1AB5 /* EpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpisodeCell.m; sourceTree = "<group>"; };
 		9E10BE7A198ED8EA002AB660 /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downloader.h; sourceTree = "<group>"; };
 		9E10BE7B198ED8EA002AB660 /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Downloader.m; sourceTree = "<group>"; };
+		9E1FC53919AEEE4800622FDF /* OnboardingPage1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingPage1.xib; sourceTree = "<group>"; };
+		9E1FC53B19AEEE7200622FDF /* OnboardingPage2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingPage2.xib; sourceTree = "<group>"; };
+		9E1FC53D19AEF03A00622FDF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		9E1FC53E19AEF03A00622FDF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		9E1FC53F19AEF03A00622FDF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		9E2BB6751980D5F5008A4446 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E2BB6771980D69A008A4446 /* PaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentVC.h; sourceTree = "<group>"; };
 		9E2BB6781980D69A008A4446 /* PaymentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentVC.m; sourceTree = "<group>"; };
@@ -96,6 +107,10 @@
 		9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9EDA110A19AED8D300D59971 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = Model/Episode.h; sourceTree = "<group>"; };
 		9EDA110B19AED8D300D59971 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = Model/Episode.m; sourceTree = "<group>"; };
+		9EDA110D19AEE0FA00D59971 /* UITabBarC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarC.h; sourceTree = "<group>"; };
+		9EDA110E19AEE0FA00D59971 /* UITabBarC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarC.m; sourceTree = "<group>"; };
+		9EDA111619AEE1EB00D59971 /* OnboardingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingVC.h; sourceTree = "<group>"; };
+		9EDA111719AEE1EB00D59971 /* OnboardingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingVC.m; sourceTree = "<group>"; };
 		E7B05972B6D747078C75C7D1 /* Pods-Emerald.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emerald.xcconfig"; path = "Pods/Pods-Emerald.xcconfig"; sourceTree = "<group>"; };
 		FA4013EB30F2431895B82FE4 /* libPods-Emerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Emerald.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -176,6 +191,9 @@
 				9E4D328C197B087F0043BD86 /* EpisodesTVC.m */,
 				9E01940719AD95FD000D1AB5 /* EpisodeCell.h */,
 				9E01940819AD95FD000D1AB5 /* EpisodeCell.m */,
+				9E1FC53D19AEF03A00622FDF /* TestViewController.h */,
+				9E1FC53E19AEF03A00622FDF /* TestViewController.m */,
+				9E1FC53F19AEF03A00622FDF /* TestViewController.xib */,
 				9E10BE7A198ED8EA002AB660 /* Downloader.h */,
 				9E10BE7B198ED8EA002AB660 /* Downloader.m */,
 				9E4D32A0197B7BAB0043BD86 /* PlaybackVC.h */,
@@ -184,6 +202,9 @@
 				9E2BB6781980D69A008A4446 /* PaymentVC.m */,
 				4E55B03219839AC500B6E176 /* RequestC.h */,
 				4E55B03319839AC600B6E176 /* RequestC.m */,
+				9EDA110D19AEE0FA00D59971 /* UITabBarC.h */,
+				9EDA110E19AEE0FA00D59971 /* UITabBarC.m */,
+				9EDA111B19AEE1EE00D59971 /* Onboarding */,
 				9E4D3269197B05860043BD86 /* Images.xcassets */,
 				9E4D325B197B05860043BD86 /* Supporting Files */,
 			);
@@ -236,6 +257,17 @@
 				4E55B02A198391F600B6E176 /* User+Helpers.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9EDA111B19AEE1EE00D59971 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				9E1FC53919AEEE4800622FDF /* OnboardingPage1.xib */,
+				9E1FC53B19AEEE7200622FDF /* OnboardingPage2.xib */,
+				9EDA111619AEE1EB00D59971 /* OnboardingVC.h */,
+				9EDA111719AEE1EB00D59971 /* OnboardingVC.m */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,7 +351,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E4D328A197B06D80043BD86 /* Main.storyboard in Resources */,
+				9E1FC53C19AEEE7200622FDF /* OnboardingPage2.xib in Resources */,
+				9E1FC53A19AEEE4800622FDF /* OnboardingPage1.xib in Resources */,
 				9E4D325F197B05860043BD86 /* InfoPlist.strings in Resources */,
+				9E1FC54119AEF03A00622FDF /* TestViewController.xib in Resources */,
 				9E4D326A197B05860043BD86 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +410,10 @@
 				9E4D3296197B15B60043BD86 /* Podcast.m in Sources */,
 				9E01940919AD95FD000D1AB5 /* EpisodeCell.m in Sources */,
 				9E4D3265197B05860043BD86 /* AppDelegate.m in Sources */,
+				9EDA111919AEE1EB00D59971 /* OnboardingVC.m in Sources */,
+				9EDA110F19AEE0FA00D59971 /* UITabBarC.m in Sources */,
 				9E4D329D197B4CA60043BD86 /* Podcast+Helpers.m in Sources */,
+				9E1FC54019AEF03A00622FDF /* TestViewController.m in Sources */,
 				9E4D328D197B087F0043BD86 /* EpisodesTVC.m in Sources */,
 				9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */,
 				9E4D3261197B05860043BD86 /* main.m in Sources */,

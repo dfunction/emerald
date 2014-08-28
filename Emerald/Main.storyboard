@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="2301" y="761"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab BarC-->
         <scene sceneID="hBw-T0-Nza">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="OFK-RS-DWX" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="OFK-RS-DWX" customClass="UITabBarC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="0H1-CN-OSS">
@@ -156,7 +156,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bxL-aW-ubO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807" y="104"/>
+            <point key="canvasLocation" x="1763" y="104"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
