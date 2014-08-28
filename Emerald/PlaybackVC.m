@@ -55,13 +55,14 @@
     [super viewDidLoad];
     
     // Prepare audio
+    NSFileManager* fileManager = [[NSFileManager alloc] init];
     NSData *soundData;
-    if ([[self episode] audio] == nil) {
+    if ([[self episode] audioPath] == nil) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Do not yet have audio data." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
         [alert show];
         return;
     } else {
-        soundData = [[self episode] audio];
+        soundData = [fileManager contentsAtPath: self.episode.audioPath];
     }
 
     [self setPlayer:[[AVAudioPlayer alloc] initWithData:soundData error:NULL]];

@@ -118,7 +118,7 @@
     
     if ([episode.dataIsDownloading isEqualToNumber:[[NSNumber alloc] initWithBool:YES]]) {
         [cell changeStateTo:DOWNLOADING];
-    } else if ([episode.dataIsDownloading isEqualToNumber:[[NSNumber alloc] initWithBool:NO]] && episode.audio && episode.visual) {
+    } else if ([episode.dataIsDownloading isEqualToNumber:[[NSNumber alloc] initWithBool:NO]] && episode.audioPath && episode.visual) {
         [cell changeStateTo:FULL];
     } else {
         [cell changeStateTo:EMPTY];

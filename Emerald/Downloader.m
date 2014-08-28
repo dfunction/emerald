@@ -52,10 +52,22 @@
 
  - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    self.episode.dataIsDownloading = [[NSNumber alloc] initWithBool:NO];
-    self.episode.audio = self.data;
-    [self.episode.managedObjectContext save:NULL];
+    NSFileManager* fileManager = [[NSFileManager alloc] init];
+    NSString* uuid = [[NSUUID UUID] UUIDString];
     
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *libraryDirectory = [paths objectAtIndex:0];
+    NSString *podcastsPath = [libraryDirectory stringByAppendingPathComponent:@"podcasts"];
+    
+    NSString *path = [podcastsPath stringByAppendingPathComponent:uuid];
+    
+    [fileManager createDirectoryAtPath:podcastsPath withIntermediateDirectories:NO attributes:nil error:nil];
+    [fileManager createFileAtPath:path contents:self.data attributes:nil];
+
+    self.episode.dataIsDownloading = [[NSNumber alloc] initWithBool:NO];
+    
+    self.episode.audioPath = path;
+    [self.episode.managedObjectContext save:NULL];
     
     EpisodeCell* cell = ((EpisodeCell*)[self.tableView cellForRowAtIndexPath: self.path]);
     [cell changeStateTo:FULL];
