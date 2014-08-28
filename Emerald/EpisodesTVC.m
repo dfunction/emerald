@@ -31,12 +31,12 @@
     
     [cell changeStateTo:DOWNLOADING];
     
-    [self downloadAudioForEpisode:episode withCell:cell];
+    [self downloadDataForEpisode:episode withPath:[self.tableView indexPathForCell:cell]];
 }
 
 #pragma mark - Action Helpers
 
-- (void) downloadAudioForEpisode: (Episode*)episode withCell: (EpisodeCell*) cell
+- (void) downloadDataForEpisode:(Episode*)episode withPath:(NSIndexPath*)path
 {
     episode.dataIsDownloading = [[NSNumber alloc] initWithBool:YES];
     [episode.managedObjectContext save:NULL];
@@ -44,7 +44,7 @@
     // Fetch audio
     NSMutableData *soundData;
     Downloader* downloader = [[Downloader alloc] init];
-    [downloader downloadAudioFor:episode to:soundData withProgressViewPath:[self.tableView indexPathForCell: cell] andUITableView: self.tableView];
+    [downloader downloadAudioFor:episode to:soundData withProgressViewPath:path andUITableView: self.tableView];
     
     // Fetch image
     NSData *imageData;
