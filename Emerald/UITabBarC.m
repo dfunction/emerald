@@ -17,11 +17,18 @@
 
 @implementation UITabBarC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         // Custom initialization
+        self.onboardingVC = [[OnboardingVC alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(destroyOnboardingVC)
+                                                     name:@"OnboardingViewHidden"
+                                                   object:nil];
+
     }
     return self;
 }
@@ -30,14 +37,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.onboardingVC = [[OnboardingVC alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    self.onboardingVC.dataSource = self.onboardingVC;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(destroyOnboardingVC)
-                                                 name:@"OnboardingViewHidden"
-                                               object:nil];
-    
     [self.view addSubview:self.onboardingVC.view];
 }
 

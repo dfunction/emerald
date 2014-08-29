@@ -21,28 +21,21 @@
 {
     self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
     if (self) {
-        CGRect finalFrame = self.view.frame;
-        
-        self.view.frame  = CGRectMake(0, 490, 320, 460);
-        
-        [UIView animateWithDuration:0.5
-                              delay:0.1
-                            options: UIViewAnimationCurveEaseIn
-                         animations:^{
-                             self.view.frame = finalFrame;
-                         }
-                         completion:^(BOOL finished){
-                         }];
-    }
-    return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
         self.dataSource = self;
-        // Custom initialization
+        
+        self.nibNames = [[NSMutableArray alloc] init];
+        
+        [self.nibNames addObject:@"OnboardingPage1"];
+        [self.nibNames addObject:@"OnboardingPage2"];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(hideOnboarding)
+                                                     name:@"OnboardingSkipped"
+                                                   object:nil];
+        NSArray *initialVC = [[NSArray alloc] initWithObjects:[[UIViewController alloc] initWithNibName:[self.nibNames objectAtIndex:0] bundle:nil], nil];
+        
+        [self setViewControllers:initialVC direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+
     }
     return self;
 }
@@ -51,21 +44,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    CGRect finalFrame = self.view.frame;
+    self.view.frame  = CGRectMake(0, 490, 320, 460);
     
-    self.nibNames = [[NSMutableArray alloc] init];
-    
-    [self.nibNames addObject:@"OnboardingPage1"];
-    [self.nibNames addObject:@"OnboardingPage2"];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(hideOnboarding)
-                                                 name:@"OnboardingSkipped"
-                                               object:nil];
-                     
-    NSArray *initialVC = [[NSArray alloc] initWithObjects:[[UIViewController alloc] initWithNibName:[self.nibNames objectAtIndex:0] bundle:nil], nil];
-    
-    [self setViewControllers:initialVC direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-}
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.view.frame = finalFrame;
+                     }
+                     completion:^(BOOL finished){
+                     }];
+    }
 
 - (void)didReceiveMemoryWarning
 {
