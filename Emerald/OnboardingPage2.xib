@@ -22,7 +22,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="79l-1P-Q0P" customClass="STPView">
-                    <rect key="frame" x="15" y="162" width="290" height="55"/>
+                    <rect key="frame" x="16" y="149" width="290" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>

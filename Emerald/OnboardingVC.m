@@ -55,7 +55,19 @@
                      }
                      completion:^(BOOL finished){
                      }];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissNumberPad)];
+    
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void) dismissNumberPad {
+    if ([((UIViewController*)self.viewControllers[0]).nibName isEqualToString:self.nibNames[1] ]) {
+        [((STPView*)[self.view viewWithTag:1]).paymentView resignFirstResponder];
     }
+}
 
 - (void)didReceiveMemoryWarning
 {
