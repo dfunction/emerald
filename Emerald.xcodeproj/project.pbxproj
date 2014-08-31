@@ -9,14 +9,11 @@
 /* Begin PBXBuildFile section */
 		2A950849D25143A0A0F0CD34 /* libPods-Emerald.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4013EB30F2431895B82FE4 /* libPods-Emerald.a */; };
 		4E55B02B198391F600B6E176 /* User+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55B02A198391F600B6E176 /* User+Helpers.m */; };
-		4E55B02E198395A500B6E176 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55B02D198395A500B6E176 /* User.m */; };
 		4E55B03419839AC600B6E176 /* RequestC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55B03319839AC600B6E176 /* RequestC.m */; };
 		9E01940919AD95FD000D1AB5 /* EpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E01940819AD95FD000D1AB5 /* EpisodeCell.m */; };
 		9E10BE7C198ED8EA002AB660 /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E10BE7B198ED8EA002AB660 /* Downloader.m */; };
 		9E1FC53A19AEEE4800622FDF /* OnboardingPage1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E1FC53919AEEE4800622FDF /* OnboardingPage1.xib */; };
 		9E1FC53C19AEEE7200622FDF /* OnboardingPage2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E1FC53B19AEEE7200622FDF /* OnboardingPage2.xib */; };
-		9E1FC54019AEF03A00622FDF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1FC53E19AEF03A00622FDF /* TestViewController.m */; };
-		9E1FC54119AEF03A00622FDF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E1FC53F19AEF03A00622FDF /* TestViewController.xib */; };
 		9E2BB6761980D5F5008A4446 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2BB6751980D5F5008A4446 /* QuartzCore.framework */; };
 		9E2BB6791980D69A008A4446 /* PaymentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2BB6781980D69A008A4446 /* PaymentVC.m */; };
 		9E4D3253197B05860043BD86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D3252197B05860043BD86 /* Foundation.framework */; };
@@ -41,6 +38,7 @@
 		9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */; };
 		9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */; };
 		9E4D32AD197C94AA0043BD86 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */; };
+		9EBCA0D719B2E0F500E979B4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBCA0D619B2E0F500E979B4 /* User.m */; };
 		9EDA110C19AED8D300D59971 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA110B19AED8D300D59971 /* Episode.m */; };
 		9EDA110F19AEE0FA00D59971 /* UITabBarC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA110E19AEE0FA00D59971 /* UITabBarC.m */; };
 		9EDA111919AEE1EB00D59971 /* OnboardingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA111719AEE1EB00D59971 /* OnboardingVC.m */; };
@@ -59,8 +57,6 @@
 /* Begin PBXFileReference section */
 		4E55B029198391F600B6E176 /* User+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+Helpers.h"; path = "Model/User+Helpers.h"; sourceTree = "<group>"; };
 		4E55B02A198391F600B6E176 /* User+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+Helpers.m"; path = "Model/User+Helpers.m"; sourceTree = "<group>"; };
-		4E55B02C198395A500B6E176 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
-		4E55B02D198395A500B6E176 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
 		4E55B03219839AC500B6E176 /* RequestC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestC.h; sourceTree = "<group>"; };
 		4E55B03319839AC600B6E176 /* RequestC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestC.m; sourceTree = "<group>"; };
 		9E01940719AD95FD000D1AB5 /* EpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpisodeCell.h; sourceTree = "<group>"; };
@@ -69,9 +65,6 @@
 		9E10BE7B198ED8EA002AB660 /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Downloader.m; sourceTree = "<group>"; };
 		9E1FC53919AEEE4800622FDF /* OnboardingPage1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingPage1.xib; sourceTree = "<group>"; };
 		9E1FC53B19AEEE7200622FDF /* OnboardingPage2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingPage2.xib; sourceTree = "<group>"; };
-		9E1FC53D19AEF03A00622FDF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		9E1FC53E19AEF03A00622FDF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		9E1FC53F19AEF03A00622FDF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		9E2BB6751980D5F5008A4446 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E2BB6771980D69A008A4446 /* PaymentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentVC.h; sourceTree = "<group>"; };
 		9E2BB6781980D69A008A4446 /* PaymentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentVC.m; sourceTree = "<group>"; };
@@ -105,6 +98,8 @@
 		9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Episode+Helpers.h"; path = "Model/Episode+Helpers.h"; sourceTree = "<group>"; };
 		9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Episode+Helpers.m"; path = "Model/Episode+Helpers.m"; sourceTree = "<group>"; };
 		9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9EBCA0D519B2E0F500E979B4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		9EBCA0D619B2E0F500E979B4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
 		9EDA110A19AED8D300D59971 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = Model/Episode.h; sourceTree = "<group>"; };
 		9EDA110B19AED8D300D59971 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = Model/Episode.m; sourceTree = "<group>"; };
 		9EDA110D19AEE0FA00D59971 /* UITabBarC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarC.h; sourceTree = "<group>"; };
@@ -191,9 +186,6 @@
 				9E4D328C197B087F0043BD86 /* EpisodesTVC.m */,
 				9E01940719AD95FD000D1AB5 /* EpisodeCell.h */,
 				9E01940819AD95FD000D1AB5 /* EpisodeCell.m */,
-				9E1FC53D19AEF03A00622FDF /* TestViewController.h */,
-				9E1FC53E19AEF03A00622FDF /* TestViewController.m */,
-				9E1FC53F19AEF03A00622FDF /* TestViewController.xib */,
 				9E10BE7A198ED8EA002AB660 /* Downloader.h */,
 				9E10BE7B198ED8EA002AB660 /* Downloader.m */,
 				9E4D32A0197B7BAB0043BD86 /* PlaybackVC.h */,
@@ -243,6 +235,8 @@
 		9E4D329A197B15C00043BD86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9EBCA0D519B2E0F500E979B4 /* User.h */,
+				9EBCA0D619B2E0F500E979B4 /* User.m */,
 				9EDA110A19AED8D300D59971 /* Episode.h */,
 				9EDA110B19AED8D300D59971 /* Episode.m */,
 				9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */,
@@ -251,8 +245,6 @@
 				9E4D3295197B15B60043BD86 /* Podcast.m */,
 				9E4D329B197B4CA60043BD86 /* Podcast+Helpers.h */,
 				9E4D329C197B4CA60043BD86 /* Podcast+Helpers.m */,
-				4E55B02C198395A500B6E176 /* User.h */,
-				4E55B02D198395A500B6E176 /* User.m */,
 				4E55B029198391F600B6E176 /* User+Helpers.h */,
 				4E55B02A198391F600B6E176 /* User+Helpers.m */,
 			);
@@ -354,7 +346,6 @@
 				9E1FC53C19AEEE7200622FDF /* OnboardingPage2.xib in Resources */,
 				9E1FC53A19AEEE4800622FDF /* OnboardingPage1.xib in Resources */,
 				9E4D325F197B05860043BD86 /* InfoPlist.strings in Resources */,
-				9E1FC54119AEF03A00622FDF /* TestViewController.xib in Resources */,
 				9E4D326A197B05860043BD86 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,17 +400,16 @@
 			files = (
 				9E4D3296197B15B60043BD86 /* Podcast.m in Sources */,
 				9E01940919AD95FD000D1AB5 /* EpisodeCell.m in Sources */,
+				9EBCA0D719B2E0F500E979B4 /* User.m in Sources */,
 				9E4D3265197B05860043BD86 /* AppDelegate.m in Sources */,
 				9EDA111919AEE1EB00D59971 /* OnboardingVC.m in Sources */,
 				9EDA110F19AEE0FA00D59971 /* UITabBarC.m in Sources */,
 				9E4D329D197B4CA60043BD86 /* Podcast+Helpers.m in Sources */,
-				9E1FC54019AEF03A00622FDF /* TestViewController.m in Sources */,
 				9E4D328D197B087F0043BD86 /* EpisodesTVC.m in Sources */,
 				9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */,
 				9E4D3261197B05860043BD86 /* main.m in Sources */,
 				4E55B03419839AC600B6E176 /* RequestC.m in Sources */,
 				9E4D3268197B05860043BD86 /* Emerald.xcdatamodeld in Sources */,
-				4E55B02E198395A500B6E176 /* User.m in Sources */,
 				9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */,
 				9E10BE7C198ED8EA002AB660 /* Downloader.m in Sources */,
 				9EDA110C19AED8D300D59971 /* Episode.m in Sources */,

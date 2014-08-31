@@ -8,6 +8,7 @@
 
 #import "UITabBarC.h"
 #import "OnboardingVC.h"
+#import "User+Helpers.h"
 
 @interface UITabBarC ()
 
@@ -22,12 +23,14 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         // Custom initialization
-        self.onboardingVC = [[OnboardingVC alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(destroyOnboardingVC)
-                                                     name:@"OnboardingViewHidden"
-                                                   object:nil];
+        if (![User fetchUser]) {
+            self.onboardingVC = [[OnboardingVC alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(destroyOnboardingVC)
+                                                         name:@"OnboardingViewHidden"
+                                                       object:nil];
+        }
 
     }
     return self;
@@ -37,7 +40,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view addSubview:self.onboardingVC.view];
+    if (self.onboardingVC) [self.view addSubview:self.onboardingVC.view];
 }
 
 - (void) destroyOnboardingVC

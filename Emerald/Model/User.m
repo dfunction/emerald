@@ -2,7 +2,7 @@
 //  User.m
 //  Emerald
 //
-//  Created by Nora Tarano on 7/26/14.
+//  Created by Juan Sebastian Angarita on 8/30/14.
 //  Copyright (c) 2014 deltafunction.co. All rights reserved.
 //
 

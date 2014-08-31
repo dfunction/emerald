@@ -15,6 +15,7 @@
 
 @interface PaymentVC ()
 @property (strong, nonatomic) UIButton* skipButton;
+@property (strong, nonatomic) UIButton* saveButton;
 @end
 
 @implementation PaymentVC
@@ -30,6 +31,7 @@
             // Send off token to your server
             [self handleToken:token];
         }
+        [self postOnboardingFinished];
     }];
 }
 
@@ -60,37 +62,35 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.skipButton = (UIButton*)[self.view viewWithTag:3];
-        [self.skipButton addTarget:self action:@selector(postOnboardingSkipped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.skipButton addTarget:self action:@selector(createUser) forControlEvents:UIControlEventTouchUpInside];
+        self.saveButton = (UIButton*)[self.view viewWithTag:2];
+        [self.saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
 
-- (void)postOnboardingSkipped:(id)sender
+- (void)createUser
+{
+    User *user = [User fetchUser];
+    if (!user) {
+        [User createUserWithCustomerId:nil];
+    }
+    [self postOnboardingFinished];
+}
+
+- (void)postOnboardingFinished
 {
     [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"OnboardingSkipped"
+     postNotificationName:@"OnboardingFinished"
      object:self];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    User *user = [User fetchUser];
-    if (user) {
-        // TODO: setup list card view
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Emerald Settings" message:@"User exists" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-        [alert show];
-    } else {
-        self.stripeView = (STPView *)[self.view viewWithTag:1];
-        
-        /*self.stripeView = [[STPView alloc] initWithFrame:CGRectMake(15,20,290,55)
-                                                  andKey:STRIPE_KEY];*/
-        
-        self.stripeView.key = STRIPE_KEY;
-        self.stripeView.delegate = self;
-        //[self.view addSubview:self.stripeView];
-    }
+    self.stripeView = (STPView *)[self.view viewWithTag:1];
+    self.stripeView.key = STRIPE_KEY;
+    self.stripeView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning

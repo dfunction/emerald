@@ -36,7 +36,7 @@
 
 #pragma mark - Action Helpers
 
-- (void) downloadDataForEpisode:(Episode*)episode withPath:(NSIndexPath*)path
+- (void)downloadDataForEpisode:(Episode*)episode withPath:(NSIndexPath*)path
 {
     episode.dataIsDownloading = [[NSNumber alloc] initWithBool:YES];
     [episode.managedObjectContext save:NULL];
@@ -58,6 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView setDelegate:self];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     [self initData];
@@ -97,6 +98,17 @@
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(EpisodeCell *)sender
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
+    Episode *episode = [[self episodes] objectAtIndex:[indexPath row]];
+    
+    if ([episode.dataIsDownloading isEqualToNumber:[[NSNumber alloc] initWithBool:NO]] && episode.audioPath && episode.visual) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].

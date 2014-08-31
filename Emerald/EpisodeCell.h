@@ -21,5 +21,4 @@ typedef enum CellState {
 @property (strong, nonatomic) IBOutlet UILabel *title;
 @property (strong, nonatomic)IBOutlet UIProgressView *progress;
 @property (strong, nonatomic) IBOutlet UIButton *download;
-@property (nonatomic) CellState state;
 @end

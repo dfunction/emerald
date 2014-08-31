@@ -14,7 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.state = EMPTY;
         // Initialization code
     }
     return self;
@@ -36,6 +35,7 @@
     self.download.hidden = YES;
     self.progress.hidden = YES;
     self.accessoryType = UITableViewCellAccessoryNone;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     switch (state) {
         case EMPTY:
             self.download.hidden = NO;
@@ -45,6 +45,7 @@
             break;
         case FULL:
         default:
+            self.selectionStyle = UITableViewCellSelectionStyleDefault;
             self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
     }

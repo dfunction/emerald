@@ -30,7 +30,7 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(hideOnboarding)
-                                                     name:@"OnboardingSkipped"
+                                                     name:@"OnboardingFinished"
                                                    object:nil];
         NSArray *initialVC = [[NSArray alloc] initWithObjects:[[UIViewController alloc] initWithNibName:[self.nibNames objectAtIndex:0] bundle:nil], nil];
         
@@ -88,7 +88,7 @@
                          [[NSNotificationCenter defaultCenter]
                           postNotificationName:@"OnboardingViewHidden"
                           object:self];
-                         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"OnboardingSkipped" object:nil];
+                         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"OnboardingFinished" object:nil];
                      }];
 }
 
