@@ -15,39 +15,28 @@
 @interface PlaybackVC ()
 @property (strong, nonatomic) AVAudioPlayer *player;
 @property (strong, nonatomic) NSString *state;
-@property (strong, nonatomic) UIImageView *backgroundView;
-@property (strong, nonatomic) UIView *titleView;
-@property (strong, nonatomic) UIImageView *thumbnailView;
-@property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UIButton *playButton;
-@property (strong, nonatomic) UIButton *donateButton;
+@property (strong, nonatomic) IBOutlet UIImageView *thumbnailView;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *playButton;
+@property (strong, nonatomic) IBOutlet UIProgressView *playerProgressView;
+@property (strong, nonatomic) IBOutlet UIButton *donateButton;
+@property (strong, nonatomic) NSTimer *playerProgressTimer;
 @end
 
 @implementation PlaybackVC
 
-- (IBAction)playButtonPressed:(UIButton *)sender {
+- (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
     if ([self.state compare:@"paused"] == 0) {
         [[self player] play];
         self.state = @"playing";
-        [sender setTitle:@"Pause" forState:UIControlStateNormal];
     } else if ([self.state compare:@"playing"] == 0) {
         [[self player] pause];
         self.state = @"paused";
-        [sender setTitle:@"Play" forState:UIControlStateNormal];
     }
 }
 
-- (IBAction)donateButtonPressed:(UIButton *)sender {
+- (IBAction)donateButtonPressed:(UIBarButtonItem *)sender {
     [RequestC chargeWithEpisodeName:self.episode.title];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -79,91 +68,24 @@
     } else {
         imageData = [[self episode] visual];
     }
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
-    // Background view
-    // frame
-    CGRect backgroundFrame = CGRectMake(0, 0, width, height);
-    self.backgroundView = [[UIImageView alloc] initWithFrame:backgroundFrame];
-    self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
-    self.backgroundView.clipsToBounds = YES;
-    // image
-    UIImage *backgroundImage = [[UIImage alloc] initWithData:imageData];
-    ALDBlurImageProcessor *blurImageProcessor = [[ALDBlurImageProcessor alloc] initWithImage:backgroundImage];
-    UIImage *blurredBackgroundImage = [blurImageProcessor syncBlurWithRadius:10 iterations:10 errorCode:NULL];
-    [self.backgroundView setImage:blurredBackgroundImage];
-    [self.view addSubview:self.backgroundView];
-    
-    // Title view
-    [self makeTitleViewWithImageData:imageData];
-    
-    // Player
-    // play button
-    CGFloat playerY = CGRectGetMaxY(self.titleView.frame);
-    CGRect playerFrame = CGRectMake(width*1/16, playerY + width/16, width*2/16, width*2/16);
-    UIImage *playImage = [UIImage imageNamed:@"play"];
-    self.playButton = [[UIButton alloc] initWithFrame:playerFrame];
-    self.playButton.backgroundColor = [UIColor blackColor];
-    [self.playButton setImage:playImage forState:UIControlStateNormal];
-    [self.playButton addTarget:self action:@selector(playButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.playButton];
-    
-    // Donation
-    // donate button
-    CGFloat donateY = CGRectGetMaxY(self.playButton.frame);
-    CGRect donateFrame = CGRectMake(width*1/16, donateY + width/16, width*2/16, width*2/16);
-    self.donateButton = [[UIButton alloc] initWithFrame:donateFrame];
-    self.donateButton.backgroundColor = [UIColor blackColor];
-    [self.donateButton setTitle:@"$1" forState:UIControlStateNormal];
-    [self.donateButton addTarget:self action:@selector(donateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.donateButton];
-}
-
-- (void)makeTitleViewWithImageData:(NSData *)imageData {
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    
-    // Title view
-    CGRect titleViewFrame = CGRectMake(width*1/16, height/4, width*14/16, height/5);
-    self.titleView = [[UIView alloc] initWithFrame:titleViewFrame];
-    self.titleView.backgroundColor = [UIColor blackColor];
-    
-    // Thumbnail view
-    // frame
-    CGFloat thumbnailSize = CGRectGetHeight(titleViewFrame);
-    CGRect thumbnailFrame = CGRectMake(0, 0, thumbnailSize, thumbnailSize);
-    self.thumbnailView = [[UIImageView alloc] initWithFrame:thumbnailFrame];
-    self.thumbnailView.clipsToBounds = YES;
-    self.thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
-    self.thumbnailView.layer.masksToBounds = YES;
-    // image
+    // Thumbnail View
     UIImage *thumbnailImage = [[UIImage alloc] initWithData:imageData];
-    [self.thumbnailView setImage:thumbnailImage];
-    [self.titleView addSubview: self.thumbnailView];
+    ALDBlurImageProcessor *blurImageProcessor = [[ALDBlurImageProcessor alloc] initWithImage:thumbnailImage];
+    UIImage *blurredThumbnailImage = [blurImageProcessor syncBlurWithRadius:5 iterations:10 errorCode:NULL];
+    [self.thumbnailView setImage:blurredThumbnailImage];
     
     // Title label
-    // process title
-    NSArray *comps = [self.episode.title componentsSeparatedByString:@": "];
-    NSString *titleString;
-    if ([comps count] == 2) {
-        titleString = [NSString stringWithFormat:@"%@:\r%@", comps[0], comps[1]];
-    } else {
-        titleString = self.episode.title;
-    }
-    // view
-    CGRect textFrame = CGRectMake(thumbnailSize, 0, CGRectGetWidth(titleViewFrame)-thumbnailSize, CGRectGetHeight(titleViewFrame));
-    self.titleLabel = [[UILabel alloc] initWithFrame:textFrame];
-    self.titleLabel.text = [titleString uppercaseString];
-    self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.titleLabel.numberOfLines = 0;
-    [self.titleView addSubview:self.titleLabel];
+    NSString *titleString = self.episode.title;
+    self.titleLabel.text = titleString;
+    
+    self.playerProgressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCurrentTime) userInfo:nil repeats:YES];
+}
 
-    [self.view addSubview:self.titleView];
+- (void)updateCurrentTime
+{
+    float progress = self.player.currentTime * 1.0 / self.player.duration;
+    [self.playerProgressView setProgress:progress animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

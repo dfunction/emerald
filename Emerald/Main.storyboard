@@ -79,9 +79,65 @@
                     <view key="view" contentMode="scaleToFill" id="ZKx-k6-6Dk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiO-sc-DmK">
+                                <rect key="frame" x="0.0" y="461" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ADh-XH-hmG"/>
+                                    <barButtonItem systemItem="rewind" id="g3b-GM-oC7"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="JMZ-IE-kvu"/>
+                                    <barButtonItem systemItem="play" id="8cF-JR-cLC">
+                                        <connections>
+                                            <action selector="playButtonPressed:" destination="Tke-ez-5pL" id="3OF-gy-Bsb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="gC1-a5-iph"/>
+                                    <barButtonItem systemItem="fastForward" id="mxg-vK-kAX"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Bcl-KS-Hmm"/>
+                                </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W9u-IU-joG">
+                                <rect key="frame" x="0.0" y="65" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shorts: For the birds! Thing amagigga long title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lJ-jU-4hC">
+                                <rect key="frame" x="20" y="410" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dsb-hA-aFg">
+                                <rect key="frame" x="270" y="335" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" image="Donate"/>
+                                <connections>
+                                    <action selector="donateButtonPressed:" destination="Tke-ez-5pL" eventType="touchUpInside" id="6jo-Nc-qjE"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9n-XR-pWl">
+                                <rect key="frame" x="20" y="449" width="280" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </progressView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Vfc-jz-tWW"/>
+                    <connections>
+                        <outlet property="donateButton" destination="Dsb-hA-aFg" id="dgd-Ai-mse"/>
+                        <outlet property="playButton" destination="8cF-JR-cLC" id="7nU-Tb-cdu"/>
+                        <outlet property="playerProgressView" destination="g9n-XR-pWl" id="WXA-uv-YL5"/>
+                        <outlet property="thumbnailView" destination="W9u-IU-joG" id="4q2-BW-sgv"/>
+                        <outlet property="titleLabel" destination="6lJ-jU-4hC" id="ieu-s7-B15"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTl-2f-H6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -159,6 +215,9 @@
             <point key="canvasLocation" x="1763" y="104"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Donate" width="30" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
