@@ -9,6 +9,7 @@
 #import "PlaybackVC.h"
 #import "RequestC.h"
 #import "ALDBlurImageProcessor.h"
+#import "User+Helpers.h"
 
 #define TOP_BAR_HEIGHT  64
 
@@ -36,7 +37,30 @@
 }
 
 - (IBAction)donateButtonPressed:(UIBarButtonItem *)sender {
-    [RequestC chargeWithEpisodeName:self.episode.title];
+    User* user = [User fetchUser];
+    if (user && user.stripeCustomerId) {
+        [RequestC chargeWithEpisodeName:self.episode.title];
+    } else {
+        NSDictionary* dict = [NSDictionary dictionaryWithObject:self.episode.title
+                                                         forKey:@"episodeName"];
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"ShowPaymentView"
+         object:self
+         userInfo:dict];
+    }
+    
+}
+
+- (void)paymentSuccess
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Emerald Payment" message:@"Thank you for your $1 donation!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)paymentError
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please try again later" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)viewDidLoad
@@ -80,6 +104,16 @@
     self.titleLabel.text = titleString;
     
     self.playerProgressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCurrentTime) userInfo:nil repeats:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(paymentSuccess)
+                                                 name:@"PaymentSuccess"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(paymentError)
+                                                 name:@"PaymentError"
+                                               object:nil];
 }
 
 - (void)updateCurrentTime

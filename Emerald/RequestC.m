@@ -35,32 +35,31 @@ static NSString *const emeraldChargeEndpoint = @"charge";
     request.HTTPBody = bodyJSON;
     // Sent the request
     NSLog(@"Sending POST %@ %@", request, body);
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if (error) {
-                                   // Handle error
-                                   NSLog(@"NSURLConnection: %@", error);
-                               } else {
-                                   // Check response
-                                   NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:NULL];
-                                   NSLog(@"result: %@, data: %@", [res objectForKey:@"result"], [res objectForKey:@"customerId"]);
-                                   NSString *customerId = [res objectForKey:@"customerId"];
-                                   if (customerId) {
-                                       User *user = [User fetchUser];
-                                       if (user) {
-                                           user.stripeCustomerId = customerId;
-                                           [[user managedObjectContext] save:NULL];
-                                           NSLog(@"user id %@", user.stripeCustomerId);
-                                       } else {
-                                           [User createUserWithCustomerId:customerId];
-                                           NSLog(@"Created new user: %@", customerId);
-                                       }
-                                   } else {
-                                       NSLog(@"Server responded with error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-                                   }
-                               }
-                           }];
+    NSURLResponse* response;
+    NSError* error;
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (error) {
+        // Handle error
+        NSLog(@"NSURLConnection: %@", error);
+    } else {
+        // Check response
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:NULL];
+        NSLog(@"result: %@, data: %@", [res objectForKey:@"result"], [res objectForKey:@"customerId"]);
+        NSString *customerId = [res objectForKey:@"customerId"];
+        if (customerId) {
+            User *user = [User fetchUser];
+            if (user) {
+                user.stripeCustomerId = customerId;
+                [[user managedObjectContext] save:NULL];
+                NSLog(@"user id %@", user.stripeCustomerId);
+            } else {
+                [User createUserWithCustomerId:customerId];
+                NSLog(@"Created new user: %@", customerId);
+            }
+        } else {
+            NSLog(@"Server responded with error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        }
+    }
 
 }
 
@@ -82,23 +81,29 @@ static NSString *const emeraldChargeEndpoint = @"charge";
     request.HTTPBody = bodyJSON;
     // Sent the request
     NSLog(@"Sending POST %@ %@", request, body);
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if (error) {
-                                   // Handle error
-                                   NSLog(@"NSURLConnection: %@", error);
-                               } else {
-                                   // Check response
-                                   NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:NULL];
-                                   if ([[res objectForKey:@"result"] isEqualToString:@"success"]) {
-                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Emerald Payment" message:@"Thank you for your $1 donation!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-                                       [alert show];
-                                   } else {
-                                       NSLog(@"Server responded with error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-                                   }
-                               }
-                           }];
+    NSURLResponse* response;
+    NSError* error;
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (error) {
+        // Handle error
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"PaymentError"
+         object:self];
+        NSLog(@"NSURLConnection: %@", error);
+    } else {
+        // Check response
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:NULL];
+        if ([[res objectForKey:@"result"] isEqualToString:@"success"]) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"PaymentSuccess"
+             object:self];
+        } else {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"PaymentError"
+             object:self];
+            NSLog(@"Server responded with error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        }
+    }
 }
 
 

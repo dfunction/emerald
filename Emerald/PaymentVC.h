@@ -16,5 +16,6 @@
 
 
 - (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid;
+- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName;
 
 @end

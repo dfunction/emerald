@@ -16,6 +16,8 @@
 @interface PaymentVC ()
 @property (strong, nonatomic) UIButton* skipButton;
 @property (strong, nonatomic) UIButton* saveButton;
+@property (strong, nonatomic) NSString* episodeName;
+@property (strong, nonatomic) UILabel* bodyLabel;
 @end
 
 @implementation PaymentVC
@@ -32,6 +34,35 @@
             [self handleToken:token];
         }
         [self postOnboardingFinished];
+    }];
+}
+
+- (IBAction)cancel:(id)sender
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"HidePaymentView"
+     object:self];
+}
+
+- (IBAction)saveAndDonate:(id)sender
+{
+    [self.stripeView createToken:^(STPToken *token, NSError *error) {
+        if (error) {
+            // Handle error
+            [self handleError:error];
+        } else {
+            // Send off token to your server
+            [self handleToken:token];
+            if ([User fetchUser].stripeCustomerId) {
+                [RequestC chargeWithEpisodeName:self.episodeName];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"HidePaymentView"
+                 object:self];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Please try again later." delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
+                [alert show];
+            }
+        }
     }];
 }
 
@@ -65,6 +96,23 @@
         [self.skipButton addTarget:self action:@selector(createUser) forControlEvents:UIControlEventTouchUpInside];
         self.saveButton = (UIButton*)[self.view viewWithTag:2];
         [self.saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return self;
+}
+
+- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.episodeName = episodeName;
+        self.skipButton = (UIButton*)[self.view viewWithTag:3];
+        [self.skipButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        [self.skipButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        self.saveButton = (UIButton*)[self.view viewWithTag:2];
+        [self.saveButton setTitle:@"Save & Donate" forState:UIControlStateNormal];
+        [self.saveButton addTarget:self action:@selector(saveAndDonate:) forControlEvents:UIControlEventTouchUpInside];
+        self.bodyLabel = (UILabel*)[self.view viewWithTag:4];
+        self.bodyLabel.text = [NSString stringWithFormat:@"Donate $1 for \"%@\" by entering your CC info here.", self.episodeName];
     }
     return self;
 }

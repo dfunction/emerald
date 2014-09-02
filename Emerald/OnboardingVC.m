@@ -45,7 +45,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     CGRect finalFrame = self.view.frame;
-    self.view.frame  = CGRectMake(0, 490, 320, 460);
+    self.view.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
     
     [UIView animateWithDuration:0.5
                           delay:0.1
@@ -79,9 +79,9 @@
 {
     [UIView animateWithDuration:0.5
                           delay:0.1
-                        options: UIViewAnimationCurveEaseIn
+                        options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         self.view.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height, 320, 460);
+                         self.view.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height, self.view.bounds.size.width, self.view.bounds.size.height);
                      }
                      completion:^(BOOL finished){
                          [self.view removeFromSuperview];

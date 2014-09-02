@@ -9,10 +9,13 @@
 #import "UITabBarC.h"
 #import "OnboardingVC.h"
 #import "User+Helpers.h"
+#import "PaymentVC.h"
+
 
 @interface UITabBarC ()
 
 @property (strong, nonatomic) OnboardingVC *onboardingVC;
+@property (strong, nonatomic) PaymentVC *paymentVC;
 
 @end
 
@@ -31,6 +34,14 @@
                                                          name:@"OnboardingViewHidden"
                                                        object:nil];
         }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(showPaymentView:)
+                                                     name:@"ShowPaymentView"
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(hidePaymentView)
+                                                     name:@"HidePaymentView"
+                                                   object:nil];
 
     }
     return self;
@@ -53,6 +64,38 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showPaymentView:(NSNotification *)notification
+{
+    NSString* episodeName = [notification.userInfo valueForKey:@"episodeName"];
+    self.paymentVC = [[PaymentVC alloc] initForPopupWithNibName:@"OnboardingPage2" bundle:nil andEpisodeName:episodeName];
+    CGRect finalFrame = self.paymentVC.view.frame;
+    self.paymentVC.view.frame  = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.paymentVC.view.frame = finalFrame;
+                     }
+                     completion:^(BOOL finished){
+                     }];
+    [self.view addSubview:self.paymentVC.view];
+}
+
+- (void)hidePaymentView
+{
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.paymentVC.view.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height, self.view.bounds.size.width, self.view.bounds.size.height);
+                     }
+                     completion:^(BOOL finished){
+                         [self.paymentVC.view removeFromSuperview];
+                         self.paymentVC = NULL;
+                     }];
 }
 
 /*
