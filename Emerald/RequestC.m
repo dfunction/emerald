@@ -16,15 +16,15 @@
 
 @implementation RequestC
 
-static NSString *const emeraldAPIURL = @"http://Brooklyn.local:3000";//@"http://emerald.deltafunction.co";
+static NSString *const emeraldAPIURL = @"http://localhost:3000";//@"http://emerald.deltafunction.co";
 static NSString *const emeraldCustomerEndpoint = @"customers";
 static NSString *const emeraldChargeEndpoint = @"charge";
 
-+ (void)pushUserWithTokenId:(NSString *)tokenId
++ (void)pushUserWithToken:(STPToken *)token
 {
     // Setup body of request
     NSDictionary *body = @{
-                           @"tokenId": tokenId,
+                           @"tokenId": token.tokenId,
                            @"deviceId": [[UIDevice currentDevice].identifierForVendor UUIDString]
                            };
     NSData *bodyJSON = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:NULL];
@@ -47,15 +47,14 @@ static NSString *const emeraldChargeEndpoint = @"charge";
         NSLog(@"result: %@, data: %@", [res objectForKey:@"result"], [res objectForKey:@"customerId"]);
         NSString *customerId = [res objectForKey:@"customerId"];
         if (customerId) {
+            NSManagedObjectContext *context = [User managedObjectContext];
             User *user = [User fetchUser];
-            if (user) {
-                user.stripeCustomerId = customerId;
-                [[user managedObjectContext] save:NULL];
-                NSLog(@"user id %@", user.stripeCustomerId);
-            } else {
-                [User createUserWithCustomerId:customerId];
-                NSLog(@"Created new user: %@", customerId);
-            }
+            if (!user) user = [[User alloc] initWithEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
+            user.stripeCustomerId = customerId;
+            user.last4 = token.card.last4;
+            user.brand = token.card.type;
+            [[user managedObjectContext] save:NULL];
+            NSLog(@"Created user %@", user.stripeCustomerId);
         } else {
             NSLog(@"Server responded with error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         }

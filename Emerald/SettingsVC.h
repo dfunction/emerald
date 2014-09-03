@@ -1,18 +1,13 @@
 //
-//  User.m
+//  SettingsVC.h
 //  Emerald
 //
 //  Created by Juan Sebastian Angarita on 9/2/14.
 //  Copyright (c) 2014 deltafunction.co. All rights reserved.
 //
 
-#import "User.h"
+#import <UIKit/UIKit.h>
 
-
-@implementation User
-
-@dynamic stripeCustomerId;
-@dynamic last4;
-@dynamic brand;
+@interface SettingsVC : UIViewController
 
 @end

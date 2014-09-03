@@ -63,6 +63,24 @@
     [alert show];
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        NSLog(@"INIT");
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(paymentSuccess)
+                                                     name:@"PaymentSuccess"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(paymentError)
+                                                     name:@"PaymentError"
+                                                   object:nil];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -104,16 +122,6 @@
     self.titleLabel.text = titleString;
     
     self.playerProgressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCurrentTime) userInfo:nil repeats:YES];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(paymentSuccess)
-                                                 name:@"PaymentSuccess"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(paymentError)
-                                                 name:@"PaymentError"
-                                               object:nil];
 }
 
 - (void)updateCurrentTime

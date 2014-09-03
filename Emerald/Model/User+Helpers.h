@@ -10,6 +10,7 @@
 
 @interface User (Helpers)
 
++ (NSManagedObjectContext *)managedObjectContext;
 + (User *)createUserWithCustomerId:(NSString *)customerId;
 + (User *)fetchUser;
 

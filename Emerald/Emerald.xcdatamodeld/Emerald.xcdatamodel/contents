@@ -16,11 +16,13 @@
         <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Episode" inverseName="podcast" inverseEntity="Episode" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last4" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stripeCustomerId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Episode" positionX="-74" positionY="18" width="128" height="165"/>
         <element name="Podcast" positionX="-254" positionY="20" width="128" height="88"/>
-        <element name="User" positionX="-162" positionY="63" width="128" height="60"/>
+        <element name="User" positionX="-162" positionY="63" width="128" height="90"/>
     </elements>
 </model>

@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STPView.h"
+
 
 @interface RequestC : NSObject
 
-+ (void)pushUserWithTokenId:(NSString *)tokenId;
++ (void)pushUserWithToken:(STPToken *)token;
 + (void)chargeWithEpisodeName:(NSString *)episodeName;
 
 @end

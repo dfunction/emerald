@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UIButton* saveButton;
 @property (strong, nonatomic) NSString* episodeName;
 @property (strong, nonatomic) UILabel* bodyLabel;
+@property (nonatomic) PaymentViewType viewType;
 @end
 
 @implementation PaymentVC
@@ -33,7 +34,8 @@
             // Send off token to your server
             [self handleToken:token];
         }
-        [self postOnboardingFinished];
+        if (self.viewType == SIMPLE) [self cancel: nil];
+        else [self postOnboardingFinished];
     }];
 }
 
@@ -79,7 +81,7 @@
 - (void)handleToken:(STPToken *)token
 {
     NSLog(@"Received token %@\n%@", token.tokenId, token.card.last4);
-    [RequestC pushUserWithTokenId:token.tokenId];
+    [RequestC pushUserWithToken:token];
 }
 
 - (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid
@@ -100,10 +102,11 @@
     return self;
 }
 
-- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName
+- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName andViewType:(PaymentViewType) viewType
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    self.viewType = viewType;
+    if (self && episodeName) {
         self.episodeName = episodeName;
         self.skipButton = (UIButton*)[self.view viewWithTag:3];
         [self.skipButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -113,6 +116,11 @@
         [self.saveButton addTarget:self action:@selector(saveAndDonate:) forControlEvents:UIControlEventTouchUpInside];
         self.bodyLabel = (UILabel*)[self.view viewWithTag:4];
         self.bodyLabel.text = [NSString stringWithFormat:@"Donate $1 for \"%@\" by entering your CC info here.", self.episodeName];
+    } else if (self && !episodeName) {
+        self.skipButton = (UIButton*)[self.view viewWithTag:3];
+        [self.skipButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        self.saveButton = (UIButton*)[self.view viewWithTag:2];
+        [self.saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }

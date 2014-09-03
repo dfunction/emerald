@@ -13,9 +13,13 @@
 
 @property STPView* stripeView;
 
-
+typedef enum PaymentViewType {
+    ONBOARDING,
+    DONATING,
+    SIMPLE
+} PaymentViewType;
 
 - (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid;
-- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName;
+- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName andViewType:(PaymentViewType) viewType;
 
 @end

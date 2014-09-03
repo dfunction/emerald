@@ -38,7 +38,8 @@
 		9E4D32A2197B7BAB0043BD86 /* PlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32A1197B7BAB0043BD86 /* PlaybackVC.m */; };
 		9E4D32AB197C90AC0043BD86 /* Episode+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */; };
 		9E4D32AD197C94AA0043BD86 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */; };
-		9EBCA0D719B2E0F500E979B4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBCA0D619B2E0F500E979B4 /* User.m */; };
+		9E6BA3EE19B6D97800EB3E03 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E6BA3ED19B6D97800EB3E03 /* User.m */; };
+		9E6BA3F119B6DC5900EB3E03 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E6BA3F019B6DC5900EB3E03 /* SettingsVC.m */; };
 		9EDA110C19AED8D300D59971 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA110B19AED8D300D59971 /* Episode.m */; };
 		9EDA110F19AEE0FA00D59971 /* UITabBarC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA110E19AEE0FA00D59971 /* UITabBarC.m */; };
 		9EDA111919AEE1EB00D59971 /* OnboardingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA111719AEE1EB00D59971 /* OnboardingVC.m */; };
@@ -98,8 +99,10 @@
 		9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Episode+Helpers.h"; path = "Model/Episode+Helpers.h"; sourceTree = "<group>"; };
 		9E4D32AA197C90AC0043BD86 /* Episode+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Episode+Helpers.m"; path = "Model/Episode+Helpers.m"; sourceTree = "<group>"; };
 		9E4D32AC197C94AA0043BD86 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		9EBCA0D519B2E0F500E979B4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
-		9EBCA0D619B2E0F500E979B4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
+		9E6BA3EC19B6D97800EB3E03 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		9E6BA3ED19B6D97800EB3E03 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
+		9E6BA3EF19B6DC5900EB3E03 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
+		9E6BA3F019B6DC5900EB3E03 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
 		9EDA110A19AED8D300D59971 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = Model/Episode.h; sourceTree = "<group>"; };
 		9EDA110B19AED8D300D59971 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = Model/Episode.m; sourceTree = "<group>"; };
 		9EDA110D19AEE0FA00D59971 /* UITabBarC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarC.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 		9E4D325A197B05860043BD86 /* Emerald */ = {
 			isa = PBXGroup;
 			children = (
+				9E6BA3EF19B6DC5900EB3E03 /* SettingsVC.h */,
+				9E6BA3F019B6DC5900EB3E03 /* SettingsVC.m */,
 				9E4D3263197B05860043BD86 /* AppDelegate.h */,
 				9E4D3264197B05860043BD86 /* AppDelegate.m */,
 				9E4D3266197B05860043BD86 /* Emerald.xcdatamodeld */,
@@ -235,8 +240,8 @@
 		9E4D329A197B15C00043BD86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9EBCA0D519B2E0F500E979B4 /* User.h */,
-				9EBCA0D619B2E0F500E979B4 /* User.m */,
+				9E6BA3EC19B6D97800EB3E03 /* User.h */,
+				9E6BA3ED19B6D97800EB3E03 /* User.m */,
 				9EDA110A19AED8D300D59971 /* Episode.h */,
 				9EDA110B19AED8D300D59971 /* Episode.m */,
 				9E4D32A9197C90AC0043BD86 /* Episode+Helpers.h */,
@@ -400,9 +405,10 @@
 			files = (
 				9E4D3296197B15B60043BD86 /* Podcast.m in Sources */,
 				9E01940919AD95FD000D1AB5 /* EpisodeCell.m in Sources */,
-				9EBCA0D719B2E0F500E979B4 /* User.m in Sources */,
 				9E4D3265197B05860043BD86 /* AppDelegate.m in Sources */,
 				9EDA111919AEE1EB00D59971 /* OnboardingVC.m in Sources */,
+				9E6BA3EE19B6D97800EB3E03 /* User.m in Sources */,
+				9E6BA3F119B6DC5900EB3E03 /* SettingsVC.m in Sources */,
 				9EDA110F19AEE0FA00D59971 /* UITabBarC.m in Sources */,
 				9E4D329D197B4CA60043BD86 /* Podcast+Helpers.m in Sources */,
 				9E4D328D197B087F0043BD86 /* EpisodesTVC.m in Sources */,
