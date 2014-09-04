@@ -19,6 +19,18 @@
 
 @implementation SettingsVC
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(viewWillAppear:)
+                                                     name:@"ReloadSettingsView"
+                                                   object:nil];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

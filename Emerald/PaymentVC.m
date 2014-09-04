@@ -131,6 +131,9 @@
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"HidePaymentView"
          object:self];
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"ReloadSettingsView"
+         object:self];
     }];
 }
 
