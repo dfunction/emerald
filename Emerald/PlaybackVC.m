@@ -69,7 +69,6 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSLog(@"INIT");
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(paymentSuccess)
                                                      name:@"PaymentSuccess"

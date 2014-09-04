@@ -13,6 +13,7 @@
 @interface SettingsVC ()
 @property (strong, nonatomic) IBOutlet UIView *ccInfoView;
 @property (strong, nonatomic) IBOutlet UIImageView *ccBrandImageView;
+@property (strong, nonatomic) IBOutlet UIButton *addCCButton;
 @property (strong, nonatomic) IBOutlet UILabel *ccNumberLabel;
 @end
 
@@ -28,10 +29,13 @@
     [super viewWillAppear:animated];
     User* user = [User fetchUser];
     self.ccInfoView.hidden = YES;
+    self.addCCButton.hidden = YES;
     if (user.stripeCustomerId) {
         self.ccNumberLabel.text = [NSString stringWithFormat:@"xxxx-xxxx-xxxx-%@",user.last4];
         self.ccBrandImageView.image = [UIImage imageNamed:@"placeholder.png"];
         self.ccInfoView.hidden = NO;
+    } else {
+        self.addCCButton.hidden = NO;
     }
 }
 
