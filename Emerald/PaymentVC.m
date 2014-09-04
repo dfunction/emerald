@@ -14,16 +14,95 @@
 #define STRIPE_KEY  @"pk_test_8twZAQ2hxIw36UUWXjBqLCfU"
 
 @interface PaymentVC ()
-@property (strong, nonatomic) UIButton* skipButton;
-@property (strong, nonatomic) UIButton* saveButton;
 @property (strong, nonatomic) NSString* episodeName;
-@property (strong, nonatomic) UILabel* bodyLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bodyLabel;
+@property (strong, nonatomic) IBOutlet STPView *stripeView;
+@property (strong, nonatomic) IBOutlet UIButton *acceptButton;
+@property (strong, nonatomic) IBOutlet UIButton *dismissButton;
 @property (nonatomic) PaymentViewType viewType;
 @end
 
 @implementation PaymentVC
 
-- (IBAction)save:(id)sender
+# pragma mark Main
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.stripeView.key = STRIPE_KEY;
+    self.stripeView.delegate = self;
+    
+    switch (self.viewType) {
+        case PaymentViewTypeOnboarding:
+        {
+            [self.acceptButton setTitle:@"Save" forState:UIControlStateNormal];
+            [self.dismissButton setTitle:@"Skip" forState:UIControlStateNormal];
+        }
+        break;
+        case PaymentViewTypeDonating:
+        {
+            [self.acceptButton setTitle:@"Save & Donate" forState:UIControlStateNormal];
+            [self.dismissButton setTitle:@"Cancel" forState:UIControlStateNormal];
+            self.bodyLabel.text = [NSString stringWithFormat:@"Donate $1 for \"%@\" by entering your CC info here.", self.episodeName];
+        }
+        break;
+        case PaymentViewTypeSimple:
+        default:
+        {
+            [self.acceptButton setTitle:@"Save" forState:UIControlStateNormal];
+            [self.dismissButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        }
+        break;
+    }
+}
+
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil type:(PaymentViewType)type episodeName:(NSString*) episodeName
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.episodeName = episodeName;
+        self.viewType = type;
+    }
+    return self;
+}
+
+# pragma mark Actions
+
+- (IBAction)acceptAction:(id)sender
+{
+    switch (self.viewType) {
+        case PaymentViewTypeOnboarding:
+            [self saveAndFinishOnboarding];
+            break;
+        case PaymentViewTypeDonating:
+            [self saveAndDonate];
+            break;
+        case PaymentViewTypeSimple:
+        default:
+            [self saveAndHidePaymentView];
+            break;
+    }
+}
+
+
+- (IBAction)dismissAction:(id)sender
+{
+    switch (self.viewType) {
+        case PaymentViewTypeOnboarding:
+            [self createUserAndFinishOnboarding];
+            break;
+        case PaymentViewTypeDonating:
+        case PaymentViewTypeSimple:
+        default:
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"HidePaymentView"
+             object:self];
+            break;
+    }
+}
+
+# pragma mark Helpers
+
+- (void)saveAndFinishOnboarding
 {
     // Call 'createToken' when the save button is tapped
     [self.stripeView createToken:^(STPToken *token, NSError *error) {
@@ -34,19 +113,28 @@
             // Send off token to your server
             [self handleToken:token];
         }
-        if (self.viewType == SIMPLE) [self cancel: nil];
-        else [self postOnboardingFinished];
+        [self postOnboardingFinished];
     }];
 }
 
-- (IBAction)cancel:(id)sender
+- (void)saveAndHidePaymentView
 {
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"HidePaymentView"
-     object:self];
+    // Call 'createToken' when the save button is tapped
+    [self.stripeView createToken:^(STPToken *token, NSError *error) {
+        if (error) {
+            // Handle error
+            [self handleError:error];
+        } else {
+            // Send off token to your server
+            [self handleToken:token];
+        }
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"HidePaymentView"
+         object:self];
+    }];
 }
 
-- (IBAction)saveAndDonate:(id)sender
+- (void)saveAndDonate
 {
     [self.stripeView createToken:^(STPToken *token, NSError *error) {
         if (error) {
@@ -68,64 +156,7 @@
     }];
 }
 
-- (void)handleError:(NSError *)error
-{
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
-                                                      message:[error localizedDescription]
-                                                     delegate:nil
-                                            cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                            otherButtonTitles:nil];
-    [message show];
-}
-
-- (void)handleToken:(STPToken *)token
-{
-    NSLog(@"Received token %@\n%@", token.tokenId, token.card.last4);
-    [RequestC pushUserWithToken:token];
-}
-
-- (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid
-{
-    // Toggle navigation, for example
-    // self.saveButton.enabled = valid;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.skipButton = (UIButton*)[self.view viewWithTag:3];
-        [self.skipButton addTarget:self action:@selector(createUser) forControlEvents:UIControlEventTouchUpInside];
-        self.saveButton = (UIButton*)[self.view viewWithTag:2];
-        [self.saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return self;
-}
-
-- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName andViewType:(PaymentViewType) viewType
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    self.viewType = viewType;
-    if (self && episodeName) {
-        self.episodeName = episodeName;
-        self.skipButton = (UIButton*)[self.view viewWithTag:3];
-        [self.skipButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        [self.skipButton setTitle:@"Cancel" forState:UIControlStateNormal];
-        self.saveButton = (UIButton*)[self.view viewWithTag:2];
-        [self.saveButton setTitle:@"Save & Donate" forState:UIControlStateNormal];
-        [self.saveButton addTarget:self action:@selector(saveAndDonate:) forControlEvents:UIControlEventTouchUpInside];
-        self.bodyLabel = (UILabel*)[self.view viewWithTag:4];
-        self.bodyLabel.text = [NSString stringWithFormat:@"Donate $1 for \"%@\" by entering your CC info here.", self.episodeName];
-    } else if (self && !episodeName) {
-        self.skipButton = (UIButton*)[self.view viewWithTag:3];
-        [self.skipButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        self.saveButton = (UIButton*)[self.view viewWithTag:2];
-        [self.saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return self;
-}
-
-- (void)createUser
+- (void)createUserAndFinishOnboarding
 {
     User *user = [User fetchUser];
     if (!user) {
@@ -141,29 +172,23 @@
      object:self];
 }
 
-- (void)viewDidLoad
+# pragma mark Stripe
+
+- (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid {}
+
+- (void)handleError:(NSError *)error
 {
-    [super viewDidLoad];
-    self.stripeView = (STPView *)[self.view viewWithTag:1];
-    self.stripeView.key = STRIPE_KEY;
-    self.stripeView.delegate = self;
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
+                                                      message:[error localizedDescription]
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                                            otherButtonTitles:nil];
+    [message show];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)handleToken:(STPToken *)token
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"Received token %@\n%@", token.tokenId, token.card.last4);
+    [RequestC pushUserWithToken:token];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

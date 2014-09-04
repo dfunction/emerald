@@ -11,15 +11,13 @@
 
 @interface PaymentVC : UIViewController <STPViewDelegate>
 
-@property STPView* stripeView;
-
 typedef enum PaymentViewType {
-    ONBOARDING,
-    DONATING,
-    SIMPLE
+    PaymentViewTypeOnboarding,
+    PaymentViewTypeDonating,
+    PaymentViewTypeSimple
 } PaymentViewType;
 
 - (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid;
-- (id) initForPopupWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andEpisodeName:(NSString*) episodeName andViewType:(PaymentViewType) viewType;
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil type:(PaymentViewType)type episodeName:(NSString*) episodeName;
 
 @end

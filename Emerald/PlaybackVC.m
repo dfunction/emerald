@@ -10,6 +10,7 @@
 #import "RequestC.h"
 #import "ALDBlurImageProcessor.h"
 #import "User+Helpers.h"
+#import "PaymentVC.h"
 
 #define TOP_BAR_HEIGHT  64
 
@@ -41,8 +42,9 @@
     if (user && user.stripeCustomerId) {
         [RequestC chargeWithEpisodeName:self.episode.title];
     } else {
-        NSDictionary* dict = [NSDictionary dictionaryWithObject:self.episode.title
-                                                         forKey:@"episodeName"];
+        NSNumber *viewType = [[NSNumber alloc] initWithInt:PaymentViewTypeDonating];
+        NSDictionary* dict = [NSDictionary dictionaryWithObjects:[[NSArray alloc] initWithObjects:self.episode.title, viewType, nil]
+                                                         forKeys:[[NSArray alloc] initWithObjects:@"episodeName", @"viewType", nil]];
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"ShowPaymentView"
          object:self

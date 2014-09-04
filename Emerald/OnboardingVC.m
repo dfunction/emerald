@@ -113,7 +113,7 @@
     }
     
     if (index == 1) {
-        return [[PaymentVC alloc] initWithNibName:[self.nibNames objectAtIndex:(index)] bundle:nil];
+        return [[PaymentVC alloc] initWithNibName:[self.nibNames objectAtIndex:(index)] bundle:nil type:PaymentViewTypeOnboarding episodeName:nil];
     } else {
         return [[UIViewController alloc] initWithNibName:[self.nibNames objectAtIndex:(index)] bundle:nil];
     }

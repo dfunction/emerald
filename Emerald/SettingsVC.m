@@ -50,7 +50,7 @@
 }
 */
 - (IBAction)addCC:(UIButton *)sender {
-    NSNumber *viewType = [[NSNumber alloc] initWithInt:SIMPLE];
+    NSNumber *viewType = [[NSNumber alloc] initWithInt:PaymentViewTypeSimple];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:viewType forKey:@"viewType"];
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"ShowPaymentView"

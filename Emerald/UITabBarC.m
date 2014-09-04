@@ -69,13 +69,8 @@
 - (void)showPaymentView:(NSNotification *)notification
 {
     PaymentViewType viewType = (PaymentViewType)[(NSNumber*)[notification.userInfo valueForKey:@"viewType"] intValue];
-    if (viewType == SIMPLE) {
-        self.paymentVC = [[PaymentVC alloc] initForPopupWithNibName:@"OnboardingPage2" bundle:nil andEpisodeName:nil andViewType:viewType];
-    } else {
-        NSString* episodeName = [notification.userInfo valueForKey:@"episodeName"];
-        if (episodeName) self.paymentVC = [[PaymentVC alloc] initForPopupWithNibName:@"OnboardingPage2" bundle:nil andEpisodeName:episodeName andViewType:viewType];
-        else self.paymentVC = [[PaymentVC alloc] initWithNibName:@"OnboardingPage2" bundle:nil];
-    }
+    self.paymentVC = [[PaymentVC alloc] initWithNibName:@"OnboardingPage2" bundle:nil type:viewType episodeName:[notification.userInfo valueForKey:@"episodeName"]];
+
     CGRect finalFrame = self.paymentVC.view.frame;
     self.paymentVC.view.frame  = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
     
