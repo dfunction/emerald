@@ -62,7 +62,7 @@ app.post("/customers", function(req, res) {
   console.log("Got Post: %j", req.body);
   var tokenId = req.body.tokenId;
   var deviceId = req.body.deviceId;
-  
+
   // Check params
   if (!tokenId || !deviceId) {
     error("Bad Params", res);
@@ -110,7 +110,7 @@ app.post("/customers", function(req, res) {
 app.post("/customers/delete", function(req, res) {
   console.log("Got Delete: %j", req.body);
   var deviceId = req.body.deviceId;
-  
+
   // Check params
   if (!deviceId) {
     error("Bad Params", res);
@@ -118,11 +118,12 @@ app.post("/customers/delete", function(req, res) {
   } else if (!DB[deviceId]) {
     error("DeviceId does not exist", res);
     return;
-  } 
+  }
 
   stripe.customers.del(DB[deviceId], function(err, confirmation) {
     if (err || !confirmation.deleted) error(err ? err : "Bad confirmation", res);
     else {
+      DB[deviceId] = null;
       res.send({
         result: "success"
       });
