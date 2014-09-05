@@ -105,5 +105,37 @@ static NSString *const emeraldChargeEndpoint = @"charge";
     }
 }
 
++ (void)deleteUser
+{
+    // Setup body of request
+    NSDictionary *body = @{@"deviceId": [[UIDevice currentDevice].identifierForVendor UUIDString]};
+    NSData *bodyJSON = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:NULL];
+    // Setup the request
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[[NSURL URLWithString:emeraldAPIURL] URLByAppendingPathComponent:emeraldCustomerEndpoint] URLByAppendingPathComponent:@"delete"]];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = bodyJSON;
+    // Sent the request
+    NSLog(@"Sending POST %@ %@", request, body);
+    NSURLResponse* response;
+    NSError* error;
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (error) {
+        // Handle error
+        NSLog(@"NSURLConnection: %@", error);
+    } else {
+        // Check response
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:NULL];
+        NSString *result = [res objectForKey:@"result"];
+        if ([result isEqualToString:@"success"]) {
+            User *user = [User fetchUser];
+            NSManagedObjectContext *context = [User managedObjectContext];
+            [context deleteObject:user];
+            NSLog(@"Deleted user");
+        } else {
+            NSLog(@"Server responded with error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        }
+    }
+}
 
 @end

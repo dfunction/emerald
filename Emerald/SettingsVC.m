@@ -9,6 +9,7 @@
 #import "SettingsVC.h"
 #import "User+Helpers.h"
 #import "PaymentVC.h"
+#import "RequestC.h"
 
 @interface SettingsVC ()
 @property (strong, nonatomic) IBOutlet UIView *ccInfoView;
@@ -40,6 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     User* user = [User fetchUser];
+    NSLog(@"UserId: %@", user.stripeCustomerId);
     self.ccInfoView.hidden = YES;
     self.addCCButton.hidden = YES;
     if (user.stripeCustomerId) {
@@ -52,7 +54,8 @@
 }
 
 - (IBAction)deleteUser:(UIButton *)sender {
-    //TODO
+    [RequestC deleteUser];
+    [self viewWillAppear:YES];
 }
 
 /*

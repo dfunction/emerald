@@ -14,5 +14,6 @@
 
 + (void)pushUserWithToken:(STPToken *)token;
 + (void)chargeWithEpisodeName:(NSString *)episodeName;
++ (void)deleteUser;
 
 @end
